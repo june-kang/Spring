@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ns_mapper_sql"><!-- namespace:식별값 - 파일의 경로를 씀(통일성) -->
+	
+	<insert id="INSERT_USER">
+		INSERT INTO `USER` SET 
+		uid=#{uid}, 
+		name=#{name}, 
+		hp=#{hp}, 
+		addr=#{addr}, 
+		pos=#{pos}, 
+		dep=#{dep}, 
+		rdate=NOW();
+	</insert>
+	<select id="SELECT_USER_LIST" resultType="kr.co.ch10.vo.UserVO">
+		SELECT * FROM USER;
+	</select>
+	<select id="SELECT_USER" resultType="kr.co.ch10.vo.UserVO">
+		SELECT * FROM USER WHERE seq=#{seq};
+	</select>
+	
+</mapper>
