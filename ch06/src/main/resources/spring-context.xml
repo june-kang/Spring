@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd">
+
+
+	<context:component-scan base-package="kr.co.ch06"></context:component-scan>
+	
+	<!-- AOP 설정 -->
+	<aop:config>
+		<aop:pointcut id="insertPointcut" expression="execution(* kr.co.ch06..BoardService.insert(..))"/>
+		<aop:pointcut id="selectPointcut" expression="execution(* kr.co.ch06..BoardService.select(..))"/>
+		<aop:pointcut id="updatePointcut" expression="execution(* kr.co.ch06..BoardService.update(..))"/>
+		<aop:pointcut id="deletePointcut" expression="execution(* kr.co.ch06..BoardService.delete(..))"/>
+	
+		<aop:aspect ref="beforeAdvice">
+			<aop:before method="before1" pointcut-ref="insertPointcut"/>	
+			<aop:before method="before2" pointcut-ref="selectPointcut"/>	
+			<aop:before method="before3" pointcut-ref="updatePointcut"/>	
+		</aop:aspect>
+		
+		<aop:aspect ref="afterAdvice">
+			<aop:after method="after1" pointcut-ref="insertPointcut"/>
+			<aop:after method="after2" pointcut-ref="selectPointcut"/>
+			<aop:after method="after3" pointcut-ref="updatePointcut"/>
+		</aop:aspect>
+		
+		<aop:aspect ref="afterReturnAdvice">
+			<aop:after method="afterReturn1" pointcut-ref="insertPointcut"/>
+			<aop:after method="afterReturn2" pointcut-ref="selectPointcut"/>
+			<aop:after method="afterReturn3" pointcut-ref="updatePointcut"/>
+		</aop:aspect>
+		
+		<aop:aspect ref="afterThrowAdvice">
+			<aop:after-throwing method="afterThrow1" pointcut-ref="deletePointcut"/>
+		</aop:aspect>
+		
+		<aop:aspect ref="aroundAdvice">
+			<aop:around method="around1" pointcut-ref="insertPointcut"/>
+			<aop:around method="around2" pointcut-ref="selectPointcut"/>
+			<aop:around method="around3" pointcut-ref="updatePointcut"/>
+		</aop:aspect>
+		
+	</aop:config>
+	
+</beans>
