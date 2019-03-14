@@ -10,11 +10,11 @@
 		<div id="board">
 			<h3>글쓰기</h3>
 			<div class="write">
-				<form action="#" method="post">
+				<form action="/sboard/write" method="post" enctype="multipart/form-data">
 					<table>
 						<tr>
 							<td>제목</td>
-							<td><input type="text" name="subject" placeholder="제목을 입력하세요." required /></td>
+							<td><input type="text" name="title" placeholder="제목을 입력하세요." required /></td>
 						</tr>				
 						<tr>
 							<td>내용</td>
@@ -25,7 +25,7 @@
 						<tr>
 							<td>첨부</td>
 							<td>
-								<input type="file" name="file" />
+								<input type="file" name="fname" />
 							</td>
 						</tr>
 					</table>

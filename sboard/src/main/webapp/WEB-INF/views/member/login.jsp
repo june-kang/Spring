@@ -5,19 +5,23 @@
 		<meta charset="UTF-8">
 		<title>로그인</title>
 		<link rel="stylesheet" href="/sboard/css/style.css" />
+
 	</head>
 	<body>
 		<div id="member">
 			<section class="login">		
-				<form action="/sboard/list" method="get">
+				<form action="/sboard/member/login" method="post">
 					<table>
 						<tr>
 							<td><img src="/sboard/img/login_ico_id.png" alt="아이디" /></td>
-							<td><input type="text" name="id" required placeholder="아이디 입력" autocomplete="off" /></td>
+							<td>
+								<input type="text" name="uid" required placeholder="아이디 입력" autocomplete="off" />
+								<span class="resultId"></span>
+							</td>
 						</tr>
 						<tr>
 							<td><img src="/sboard/img/login_ico_pw.png" alt="비밀번호" /></td>
-							<td><input type="password" name="pw" required placeholder="비밀번호 입력" /></td>
+							<td><input type="password" name="pass" required placeholder="비밀번호 입력" /></td>
 						</tr>
 					</table>
 					<input type="submit" class="btnLogin" value="로그인" />

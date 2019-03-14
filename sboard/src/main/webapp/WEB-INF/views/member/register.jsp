@@ -5,28 +5,61 @@
 		<meta charset="UTF-8">
 		<title>회원가입</title>
 		<link rel="stylesheet" href="/sboard/css/style.css" />
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script>
+			$(function(){
+				
+				// 아이디 중복 체크
+				$('input[name=uid]').focusout(function(){
+					
+					var tag = $(this);
+					var uid = $(this).val();
+
+					$.ajax({
+						url:'/sboard/member/idCheck',
+						type:'get',
+						data:{"uid":uid},
+						dataType:'json',
+						success:function(data){
+							
+							if(data.result==1){
+								$('.resultId').css('color','red').text('이미 사용중인 아이디입니다.')
+								tag.focus();
+								isUidOk = false;
+							} else{
+								$('.resultId').css('color','green').text('사용가능한 아이디입니다.')
+								isUidOk = true;
+							}
+						}
+						
+					});
+				});
+			});
+	
+	
+	</script>
 	</head>
 	<body>
 		<div id="member">
 			<section class="register">
-				<form action="#" method="POST">
+				<form action="/sboard/member/register" method="POST">
 					<section>
 						<table>
 							<caption>사이트 이용정보 입력</caption>
 							<tr>
 								<td>아이디</td>
 								<td>
-									<input type="text" name="id" placeholder="아이디를 입력" required />
+									<input type="text" name="uid" placeholder="아이디를 입력" required />
 									<span class="resultId"></span>
 								</td>
 							</tr>
 							<tr>
 								<td>비밀번호</td>
-								<td><input type="password" name="pw1" placeholder="비밀번호를 입력" required /></td>
+								<td><input type="password" name="pass" placeholder="비밀번호를 입력" required /></td>
 							</tr>
 							<tr>
 								<td>비밀번호확인</td>
-								<td><input type="password" name="pw2" placeholder="비밀번호를 확인" required /></td>
+								<td><input type="password" name="pass2" placeholder="비밀번호를 확인" required /></td>
 							</tr>
 						</table>
 					</section>
@@ -74,7 +107,7 @@
 			
 					</section>
 					<div>
-						<a href="#" class="cancel">취소</a> 
+						<a href="/sboard/member/login" class="cancel">취소</a> 
 						<input type="submit" class="join" value="회원가입" />
 					</div>
 				</form>

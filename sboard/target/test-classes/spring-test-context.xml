@@ -11,6 +11,7 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd
 		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd">
 
+	<!-- 테스트용 Spring 설정파일 -->
 
 	<context:component-scan base-package="kr.co.sboard"></context:component-scan>
 	
@@ -19,18 +20,12 @@
 		<property name="prefix" value="/WEB-INF/views/"></property>
 		<property name="suffix" value=".jsp"></property>
 	</bean>
-	
-	<!-- resources 경로 설정 -->
-	<mvc:annotation-driven></mvc:annotation-driven>
-	<mvc:resources location="/resources/" mapping="/resources/**" />		
-	<mvc:resources location="/resources/css/" mapping="/css/**" />		
-	<mvc:resources location="/resources/img/" mapping="/img/**" />		
-	<mvc:resources location="/resources/js/" mapping="/js/**" />
+
 	
 		<!-- dataSource 설정(DB설정) -->
-	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
-		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<property name="url" value="jdbc:mysql://192.168.0.161:3306/ksw" />
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy" />
+		<property name="url" value="jdbc:log4jdbc:mysql://192.168.0.161:3306/ksw" />
 		<property name="username" value="ksw" />
 		<property name="password" value="1234" />
 	</bean>
@@ -49,11 +44,6 @@
 	<!-- Spring - Mybatis 연동설정 : 얘가 Mybatis -->
 	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg ref="sqlSessionFactoryBean"></constructor-arg>
-	</bean>
-	
-	<!-- File 업로드 설정 -->
-	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-		<property name="maxUploadSize" value="10000000"></property>
 	</bean>
 		
 </beans>
