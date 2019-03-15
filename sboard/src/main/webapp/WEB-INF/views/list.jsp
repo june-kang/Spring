@@ -27,7 +27,7 @@
 					<c:forEach var="vo" items="${list}">
 					<tr>
 						<td>${count=count-1 }</td>
-						<td><a href="/sboard/view?seq=${vo.seq }">${vo.title }</a>&nbsp;[${vo.comment }]</td>
+						<td><a href="/sboard/view?seq=${vo.seq }">${vo.title }<c:if test="${vo.file!=0 }"><img src="/sboard/img/file_ico.png" alt="파일" /></c:if></a>&nbsp;[${vo.comment }]</td>
 						<td>${vo.nick }</td>
 						<td>${vo.rdate.substring(2, 10)}</td>
 						<td>${vo.hit }</td>

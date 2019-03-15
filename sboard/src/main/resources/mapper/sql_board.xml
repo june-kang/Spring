@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="ns.mapper.sql_board"><!-- namespace:식별값 - 파일의 경로를 씀(통일성) -->
 	
-	<insert id="INSERT_BOARD">
+	<insert id="INSERT_BOARD" parameterType="kr.co.sboard.vo.BoardVO" useGeneratedKeys="true" keyProperty="seq"><!-- 파라미터타입은 없어도됨 -->
 		INSERT INTO `JSP_BOARD` SET
 		cate=#{cate},
 		title=#{title},
@@ -16,14 +16,78 @@
 	<select id="SELECT_LIST" resultType="kr.co.sboard.vo.BoardVO">
 		SELECT B.*, M.nick FROM `JSP_BOARD` AS B JOIN `JSP_MEMBER` AS M
 		ON B.uid = M.uid
-		WHERE parent=0 AND cate='grow'
+		WHERE parent=0 AND cate='notice'
 		ORDER BY seq DESC
 		LIMIT #{start}, 10;
 	</select>
 	
 	<select id="SELECT_LIST_COUNT" resultType="int">
 		SELECT COUNT(*) FROM `JSP_BOARD`
-		WHERE parent=0 AND cate='grow';
+		WHERE parent=0 AND cate='notice';
 	</select>
+	
+	<insert id="INSERT_FILE">
+		INSERT INTO `JSP_FILE` SET
+		parent=#{parent},
+		oldName=#{oldName},
+		newName=#{newName},
+		rdate=NOW();
+	</insert>
+	
+	<select id="SELECT_VIEW_WITH_FILE" resultType="kr.co.sboard.vo.BoardVO">
+		SELECT * FROM `JSP_BOARD` AS b LEFT JOIN `JSP_FILE` AS f ON b.seq = f.parent WHERE b.seq=#{seq}
+	</select>
+	
+	<update id="UPDATE_HIT">
+		UPDATE `JSP_BOARD` SET hit=hit+1 WHERE seq=#{seq};
+	</update>
+	
+	<select id="SELECT_FILE" resultType="kr.co.sboard.vo.FileVO">
+		SELECT * FROM `JSP_FILE` WHERE parent=#{parent};		
+	</select>
+	
+	<update id="UPDATE_FILE">
+		UPDATE `JSP_FILE` SET download=download+1 WHERE parent=#{parent};
+	</update>
+	
+	<delete id="DELETE_VIEW">
+		DELETE FROM `JSP_BOARD` WHERE seq=#{seq};
+	</delete>
+	
+	<update id="UPDATE_VIEW" parameterType="kr.co.sboard.vo.BoardVO" useGeneratedKeys="true" keyProperty="seq">
+		UPDATE `JSP_BOARD` SET
+		title=#{title},
+		content=#{content} 
+		WHERE seq=#{seq};
+	</update>
+	
+	<insert id="INSERT_COMMENT">
+		INSERT INTO `JSP_BOARD` SET
+		parent=#{parent},
+		content=#{content},
+		uid=#{uid},
+		regip=#{regip},
+		rdate=NOW();
+	</insert>
+	
+	<select id="SELECT_COMMENT" resultType="kr.co.sboard.vo.BoardVO">
+		SELECT B.*, M.nick
+		FROM `JSP_BOARD` AS B JOIN `JSP_MEMBER` AS M
+		ON B.uid = M.uid
+		WHERE B.parent=#{parent}
+		ORDER BY B.seq ASC;
+	</select>
+	
+	<delete id="DELETE_COMMENT">
+		DELETE FROM `JSP_BOARD` WHERE seq=#{seq};
+	</delete>
+	
+	<update id="UPDATE_COMMENT_COUNT_PLUS">
+		UPDATE `JSP_BOARD` SET comment=comment+1 WHERE seq=#{seq};
+	</update>
+	
+	<update id="UPDATE_COMMENT_COUNT_MINUS">
+		UPDATE `JSP_BOARD` SET comment=comment-1 WHERE seq=#{seq};	
+	</update>
 
 </mapper>

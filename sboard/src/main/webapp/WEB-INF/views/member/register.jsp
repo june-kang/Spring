@@ -8,6 +8,7 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<script>
 			$(function(){
+				var isUidOk = false;
 				
 				// 아이디 중복 체크
 				$('input[name=uid]').focusout(function(){
@@ -34,6 +35,15 @@
 						
 					});
 				});
+				
+				$('#regForm').submit(function(){
+					
+					if(!isUidOk){
+						alert('이미사용중인 아이디 입니다.')
+						return false;
+					}
+					return true;
+				});
 			});
 	
 	
@@ -42,7 +52,7 @@
 	<body>
 		<div id="member">
 			<section class="register">
-				<form action="/sboard/member/register" method="POST">
+				<form id="regForm" action="/sboard/member/register" method="POST">
 					<section>
 						<table>
 							<caption>사이트 이용정보 입력</caption>
