@@ -111,7 +111,7 @@
             <article>
               <ul>
                 <li>
-                  <a href="#" class="thumb"><img src="./resource/thumb_336.png" alt="상품이미지"></a>
+                  <a href="#" class="thumb"><img src="/booktopia/goods/thumb_336.png" alt="상품이미지"></a>
                 </li>
                 <li>
                   <h3 class="name">짠테크 가계부</h3>
@@ -139,7 +139,7 @@
             <article>
               <ul>
                 <li>
-                  <a href="#" class="thumb"><img src="./img/thumb-sample-t2.jpg" alt="상품이미지"></a>
+                  <a href="#" class="thumb"><img src="/booktopia/img/thumb-sample-t2.jpg" alt="상품이미지"></a>
                 </li>
                 <li>
                   <h3 class="name">상품명</h3>
@@ -167,7 +167,7 @@
             <article>
               <ul>
                 <li>
-                  <a href="#" class="thumb"><img src="./img/thumb-sample-t3.jpg" alt="상품이미지"></a>
+                  <a href="#" class="thumb"><img src=/booktopia/img/thumb-sample-t3.jpg" alt="상품이미지"></a>
                 </li>
                 <li>
                   <h3 class="name">상품명</h3>
@@ -195,7 +195,7 @@
             <article>
               <ul>
                 <li>
-                  <a href="#" class="thumb"><img src="./img/thumb-sample-t4.jpg" alt="상품이미지"></a>
+                  <a href="#" class="thumb"><img src="/booktopia/img/thumb-sample-t4.jpg" alt="상품이미지"></a>
                 </li>
                 <li>
                   <h3 class="name">상품명</h3>
@@ -223,7 +223,7 @@
             <article>
               <ul>
                 <li>
-                  <a href="#" class="thumb"><img src="./img/thumb-sample-t5.jpg" alt="상품이미지"></a>
+                  <a href="#" class="thumb"><img src="/booktopia/img/thumb-sample-t5.jpg" alt="상품이미지"></a>
                 </li>
                 <li>
                   <h3 class="name">상품명</h3>
@@ -251,7 +251,7 @@
             <article>
               <ul>
                 <li>
-                  <a href="#" class="thumb"><img src="./img/thumb-sample-t5.jpg" alt="상품이미지"></a>
+                  <a href="#" class="thumb"><img src="/booktopia/img/thumb-sample-t5.jpg" alt="상품이미지"></a>
                 </li>
                 <li>
                   <h3 class="name">상품명</h3>
@@ -279,7 +279,7 @@
             <article>
               <ul>
                 <li>
-                  <a href="#" class="thumb"><img src="./img/thumb-sample-t5.jpg" alt="상품이미지"></a>
+                  <a href="#" class="thumb"><img src="/booktopia/img/thumb-sample-t5.jpg" alt="상품이미지"></a>
                 </li>
                 <li>
                   <h3 class="name">상품명</h3>
@@ -307,7 +307,7 @@
             <article>
               <ul>
                 <li>
-                  <a href="#" class="thumb"><img src="./img/thumb-sample-t5.jpg" alt="상품이미지"></a>
+                  <a href="#" class="thumb"><img src="/booktopia/img/thumb-sample-t5.jpg" alt="상품이미지"></a>
                 </li>
                 <li>
                   <h3 class="name">상품명</h3>
@@ -335,7 +335,7 @@
             <article>
               <ul>
                 <li>
-                  <a href="#" class="thumb"><img src="./img/thumb-sample-t5.jpg" alt="상품이미지"></a>
+                  <a href="#" class="thumb"><img src="/booktopia/img/thumb-sample-t5.jpg" alt="상품이미지"></a>
                 </li>
                 <li>
                   <h3 class="name">상품명</h3>
@@ -363,7 +363,7 @@
             <article>
               <ul>
                 <li>
-                  <a href="#" class="thumb"><img src="./img/thumb-sample-t5.jpg" alt="상품이미지"></a>
+                  <a href="#" class="thumb"><img src="/booktopia/img/thumb-sample-t5.jpg" alt="상품이미지"></a>
                 </li>
                 <li>
                   <h3 class="name">상품명</h3>
@@ -450,7 +450,7 @@
           <!--   상품이 없습니다. -->
           <form name="frm_sticky">
             <a href="#">
-              <img width="75" height="95" id="img_sticky" src="/booktopia/resource/thumb_336.png">
+              <img width="75" height="95" id="img_sticky" src="/booktopia/goods/thumb_336.png">
             </a>
           </form>
         </ul>

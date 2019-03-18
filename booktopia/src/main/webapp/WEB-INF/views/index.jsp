@@ -1,4 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
   <meta charset="utf-8">
@@ -122,90 +124,21 @@
         <!-- 베스트셀러 -->
         <div class="main_book">
           <h3>베스트셀러</h3>
+          <c:forEach var="item" items="${goodsMap.bestseller }" >
           <div class="book">
             <a href="#">
-              <img width="121" height="154" src="/booktopia/resource/thumb_395.png">
-              <div class="title">모두의 파이썬</div>
-              <div class="price">24,000원</div>
+            <%--
+	      		이미지 썸네일 출력하기
+	      		"/goods/thumbnail?goods_id=상품번호&fileName=상품이미지명" 요청
+	      		kr.co.booktopia.controller.BaseController - thumbnails() 실행
+	      	--%>
+            
+              <img width="121" height="154" src="/booktopia/goods/thumbnail?goods_id=${item.goods_id}&fileName=${item.fileName}" />
+              <div class="title">${item.goods_title}</div>
+              <div class="price"><fmt:formatNumber value="${item.goods_price }" type="number" var="goods_price" />${goods_price }원</div>
             </a>
           </div>
-          <div class="book">
-            <a href="#">
-              <img width="121" height="154" src="/booktopia/resource/thumb_356.png">
-              <div class="title">마인크래프트 무작정 따라하기</div>
-              <div class="price">14,000원</div>
-            </a>
-          </div>
-          <div class="book">
-            <a href="#">
-              <img width="121" height="154" src="/booktopia/resource/thumb_336.png">
-              <div class="title">짠테크 가계부</div>
-              <div class="price">30,000원</div>
-            </a>
-          </div>
-          <div class="book">
-            <a href="#">
-              <img width="121" height="154" src="/booktopia/resource/thumb_342.png">
-              <div class="title">부동산 상식 사전</div>
-              <div class="price">20,000원</div>
-            </a>
-          </div>
-          <div class="book">
-            <a href="#">
-              <img width="121" height="154" src="/booktopia/resource/thumb_341.png">
-              <div class="title">자바스크립트 배우기</div>
-              <div class="price">25,000원</div>
-            </a>
-          </div>
-          <div class="book">
-            <a href="#">
-              <img width="121" height="154" src="/booktopia/resource/thumb_340.png">
-              <div class="title">직장인을 위한 엑셀 실무</div>
-              <div class="price">25,000원</div>
-            </a>
-          </div>
-          <div class="book">
-            <a href="#">
-              <img width="121" height="154" src="/booktopia/resource/thumb_339.png">
-              <div class="title">시나공 워드 프로세서 실기</div>
-              <div class="price">25,000원</div>
-            </a>
-          </div>
-          <div class="book">
-            <a href="#">
-              <img width="121" height="154" src="/booktopia/resource/thumb_338.png">
-              <div class="title">컴퓨터 활용능력 2급 실기</div>
-              <div class="price">25,000원</div>
-            </a>
-          </div>
-          <div class="book">
-            <a href="#">
-              <img width="121" height="154" src="/booktopia/resource/thumb_337.png">
-              <div class="title">케라스로 배우는 딥러닝</div>
-              <div class="price">30,000원</div>
-            </a>
-          </div>
-          <div class="book">
-            <a href="#">
-              <img width="121" height="154" src="/booktopia/resource/thumb_394.png">
-              <div class="title">무작정 따라가기 홍콩 마카오</div>
-              <div class="price">30,000원</div>
-            </a>
-          </div>
-          <div class="book">
-            <a href="#">
-              <img width="121" height="154" src="/booktopia/resource/thumb_354.png">
-              <div class="title">모두의 딥러닝</div>
-              <div class="price">24,000원</div>
-            </a>
-          </div>
-          <div class="book">
-            <a href="#">
-              <img width="121" height="154" src="/booktopia/resource/thumb_397.png">
-              <div class="title">리액트를 다루는 기술</div>
-              <div class="price">32,000원</div>
-            </a>
-          </div>
+          </c:forEach>
         </div>
 
         <div id="ad_sub_banner">
@@ -215,35 +148,17 @@
         <!-- 새로 출판된 책 -->
         <div class="main_book">
           <h3>새로 출판된 책</h3>
+          <c:forEach var="item" items="${goodsMap.newbook }">
           <div class="book">
             <a href="#">
-              <img width="121" height="154" src="/booktopia/resource/thumb_397.png">
-              <div class="title">리액트를 다루는 기술</div>
-              <div class="price">32,000원</div>
+              <img width="121" height="154" src="${ctxPath}/booktopia/goods/thumbnail?goods_id=${item.goods_id}&fileName=${item.fileName}">
+              <div class="title">${item.goods_title }</div>
+              <div class="price"><fmt:formatNumber value="${item.goods_price}" type="number" var="goods_price" />${goods_price}원</div>
             </a>
           </div>
-          <div class="book">
-            <a href="#">
-              <img width="121" height="154" src="/booktopia/resource/thumb_397.png">
-              <div class="title">리액트를 다루는 기술</div>
-              <div class="price">32,000원</div>
-            </a>
-          </div>
-          <div class="book">
-            <a href="#">
-              <img width="121" height="154" src="/booktopia/resource/thumb_397.png">
-              <div class="title">리액트를 다루는 기술</div>
-              <div class="price">32,000원</div>
-            </a>
-          </div>
-          <div class="book">
-            <a href="#">
-              <img width="121" height="154" src="/booktopia/resource/thumb_397.png">
-              <div class="title">리액트를 다루는 기술</div>
-              <div class="price">32,000원</div>
-            </a>
-          </div>
-        </div>
+          </c:forEach>
+         </div>
+         
 
         <div id="ad_sub_banner">
           <img width="770" height="117" src="/booktopia/img/sub_banner02.jpg">
@@ -252,34 +167,15 @@
         <!-- 스테디셀러 -->
         <div class="main_book">
           <h3>스테디셀러</h3>
+          <c:forEach var="item" items="${goodsMap.steadyseller }">
           <div class="book">
             <a href="#">
-              <img width="121" height="154" src="/booktopia/resource/thumb_397.png">
-              <div class="title">리액트를 다루는 기술</div>
-              <div class="price">32,000원</div>
+              <img width="121" height="154" src="${ctxPath}/booktopia/goods/thumbnail?goods_id=${item.goods_id}&fileName=${item.fileName}">
+              <div class="title">${item.goods_title }</div>
+              <div class="price"><fmt:formatNumber value="${item.goods_price}" type="number" var="goods_price" />${goods_price}원</div>
             </a>
           </div>
-          <div class="book">
-            <a href="#">
-              <img width="121" height="154" src="/booktopia/resource/thumb_397.png">
-              <div class="title">리액트를 다루는 기술</div>
-              <div class="price">32,000원</div>
-            </a>
-          </div>
-          <div class="book">
-            <a href="#">
-              <img width="121" height="154" src="/booktopia/resource/thumb_397.png">
-              <div class="title">리액트를 다루는 기술</div>
-              <div class="price">32,000원</div>
-            </a>
-          </div>
-          <div class="book">
-            <a href="#">
-              <img width="121" height="154" src="/booktopia/resource/thumb_397.png">
-              <div class="title">리액트를 다루는 기술</div>
-              <div class="price">32,000원</div>
-            </a>
-          </div>
+          </c:forEach>
         </div>
       </article>
 
@@ -323,7 +219,7 @@
           <!--   상품이 없습니다. -->
           <form name="frm_sticky">
             <a href="#">
-              <img width="75" height="95" id="img_sticky" src="/booktopia/resource/thumb_336.png">
+              <img width="75" height="95" id="img_sticky" src="/booktopia/goods/thumb_336.png">
             </a>
           </form>
         </ul>

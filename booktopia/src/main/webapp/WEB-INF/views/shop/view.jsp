@@ -102,7 +102,7 @@
         </hgroup>
         <div id="goods_image">
           <figure>
-            <img alt="HTML5 &amp; CSS3" src="/booktopia/resource/thumb_336.png">
+            <img alt="HTML5 &amp; CSS3" src="/booktopia/goods/thumb_336.png">
           </figure>
         </div>
         <div id="detail_table">

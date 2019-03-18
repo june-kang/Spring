@@ -4,5 +4,6 @@
   <mappers>
     <mapper resource="./mapper/board.xml"/>
     <mapper resource="./mapper/member.xml"/>
+    <mapper resource="./mapper/goods.xml"/>
   </mappers>
 </configuration>

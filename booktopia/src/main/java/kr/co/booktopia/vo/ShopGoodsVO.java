@@ -21,7 +21,9 @@ public class ShopGoodsVO {
 	private String goods_publisher_comment;
 	private String goods_recommendation;
 	private String goods_contents_order;
-	private String goods_entered_date;
+	private String goods_credate;
+	
+	private String fileName;
 	
 	
 	public int getGoods_id() {
@@ -138,12 +140,21 @@ public class ShopGoodsVO {
 	public void setGoods_contents_order(String goods_contents_order) {
 		this.goods_contents_order = goods_contents_order;
 	}
-	public String getGoods_entered_date() {
-		return goods_entered_date;
+	public String getGoods_credate() {
+		return goods_credate;
 	}
-	public void setGoods_entered_date(String goods_entered_date) {
-		this.goods_entered_date = goods_entered_date;
+	public void setGoods_credate(String goods_credate) {
+		this.goods_credate = goods_credate;
 	}
+	public String getFileName() {
+		return fileName;
+	}
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
+	
+	
+
 	
 	
 }

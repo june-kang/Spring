@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="bt.mapper.goods">
+
+	<select id="selectGoodsList" resultType="kr.co.booktopia.vo.ShopGoodsVO">
+		<![CDATA[
+			SELECT g.*, d.fileName FROM `BT_SHOP_GOODS` AS g, `BT_SHOP_GOODS_IMAGE` AS d
+			WHERE g.GOODS_ID=d.GOODS_ID AND d.FILETYPE='main_image' AND g.GOODS_STATUS=#{goodsStatus}
+			ORDER BY g.GOODS_CREDATE;
+		]]>
+	</select>
+
+
+
+</mapper>

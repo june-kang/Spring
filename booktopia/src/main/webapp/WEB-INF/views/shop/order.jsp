@@ -111,7 +111,7 @@
               <tr>
                 <td class="goods_image">
                   <a href="#">
-                    <img width="75" alt="" src="/booktopia/resource/thumb_336.png">
+                    <img width="75" alt="" src="/booktopia/goods/thumb_336.png">
                   </a>
                 </td>
                 <td>
