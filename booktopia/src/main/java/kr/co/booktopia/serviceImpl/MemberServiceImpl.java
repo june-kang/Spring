@@ -25,8 +25,8 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public void register() {
-		
+	public void register(MemberVO vo) {
+		dao.register(vo);
 	}
 
 	@Override

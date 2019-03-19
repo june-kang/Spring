@@ -2,9 +2,33 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="bt.mapper.member">
 
-	<select id="SELECT_MEMBER" resultType="kr.co.booktopia.vo.MemberVO">
-		SELECT * FROM `BT_MEMBER` WHERE member_id=#{member_id} AND member_pw=PASSWORD(#{member_pw});
+	<select id="selectMember" resultType="kr.co.booktopia.vo.MemberVO">
+		SELECT * FROM `BT_MEMBER` WHERE member_id=#{member_id} AND member_pw=#{member_pw};
 	</select>
+	
+	<insert id="insertMember">
+		INSERT INTO `BT_MEMBER` SET
+		member_id=#{member_id},
+		member_pw=#{member_pw},
+		member_name=#{member_name},
+		tel1=#{tel1},
+		tel2=#{tel2},
+		tel3=#{tel3},
+		hp1=#{hp1},
+		hp2=#{hp2},
+		hp3=#{hp3},
+		smssts_yn=#{smssts_yn},
+		email1=#{email1},
+		email2=#{email2},
+		emailsts_yn=#{emailsts_yn},
+		zipcode=#{zipcode},
+		address=#{address},
+		namujiAddress=#{namujiAddress},
+		member_birth_y=#{member_birth_y},
+		member_birth_m=#{member_birth_m},
+		member_birth_d=#{member_birth_d},
+		joinDate=Now();
+	</insert>
 
 
 </mapper>

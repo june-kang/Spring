@@ -2,7 +2,7 @@
 <%@ include file="../_head.jsp" %>
 <article>
   <h3>필수입력사항</h3>
-  <form action="#" method="post">
+  <form action="${ctxPath }/member/register" method="post">
     <div id="detail_table">
       <table>
         <tbody>
@@ -10,7 +10,7 @@
             <td class="fixed_join">아이디</td>
             <td>
               <input type="text" name="_member_id" id="_member_id" size="20">
-              <input type="hidden" name="member_id" id="member_id">
+
               <input type="button" id="btnOverlapped" value="중복체크" onclick="fn_overlapped()">
             </td>
           </tr>

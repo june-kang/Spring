@@ -39,7 +39,7 @@
 	<div class="main_book">
 		<h3>베스트셀러</h3>
 		<c:forEach var="item" items="${goodsMap.bestseller }">
-			<div class="book"><a href="#">
+			<div class="book"><a href="${ctxPath }/shop/view?goods_id=${item.goods_id}">
 			<%--
 	      		이미지 썸네일 출력하기
 	      		"/goods/thumbnail?goods_id=상품번호&fileName=상품이미지명" 요청

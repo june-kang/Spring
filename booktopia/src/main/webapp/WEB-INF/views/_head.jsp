@@ -3,7 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <%--컨텍스트 루트 패스 전역설정 --%>
-<<c:set var="ctxPath" value="${pageContext.request.contextPath}" />
+<c:set var="ctxPath" value="${pageContext.request.contextPath}" />
 <html>
 <head>
   <meta charset="utf-8">
@@ -29,8 +29,13 @@
         </div>
         <div id="head_link">
           <ul>
+          	<c:if test="${sessionScope.member==null }">
             <li><a href="${ctxPath}/member/login">로그인</a></li>
             <li><a href="${ctxPath}/member/register">회원가입</a></li>
+            </c:if>
+            <c:if test="${sessionScope.member != null }">
+            <li><a href="${ctxPath }/member/logout">로그아웃</a></li>
+            </c:if>
             <li><a href="#">고객센터</a></li>
           </ul>
         </div>

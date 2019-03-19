@@ -6,7 +6,7 @@ public interface MemberService {
 	
 	public MemberVO login(MemberVO vo);
 	public void logout();
-	public void register();
+	public void register(MemberVO vo);
 	public void mypage();
 
 }

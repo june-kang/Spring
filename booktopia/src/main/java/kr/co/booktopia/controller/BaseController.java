@@ -1,6 +1,10 @@
 package kr.co.booktopia.controller;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.OutputStream;
 
 import javax.servlet.http.HttpServletRequest;
@@ -41,6 +45,43 @@ public class BaseController {
 		byte[] buffer = new byte[1024*8];
 		out.write(buffer);
 		out.close();
+	}
+	
+	@RequestMapping("/goods/download")
+	protected void download(String fileName,
+							String goods_id,
+							HttpServletRequest request,
+							HttpServletResponse response) throws Exception {
+		
+		String imgPath = request.getSession().getServletContext().getRealPath("/")+"/resources/goods";
+		
+		OutputStream out = response.getOutputStream();
+		String filePath = imgPath+"/"+goods_id+"/"+fileName;
+		
+		File image = new File(filePath);
+		
+		response.setHeader("Cache-Control", "no-cache");
+		response.setHeader("Content-Disposition", "attachment; filename="+fileName);
+		response.setHeader("Content-Transfer-Encoding", "binary");
+		response.setHeader("Pragma", "no-cache");
+		
+		// 스트림 연결 : 파일 ---- response 객체
+		BufferedInputStream bis = new BufferedInputStream(new FileInputStream(image));
+		BufferedOutputStream bos = new BufferedOutputStream(response.getOutputStream());
+		
+		byte buffer[] = new byte[1024*8];
+		
+		while(true) {
+			// Input스트림으로 데이터 읽어오기
+			int read = bis.read(buffer);
+			if(read == -1) {
+				break;
+			}
+			// Output스트림으로 데이터 쓰기
+			bos.write(buffer, 0, read);
+		}
+		bis.close();
+		bos.close();
 	}
 
 }

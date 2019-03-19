@@ -5,7 +5,7 @@ public class ShopCartVO {
 	private String member_id;
 	private int goods_id;
 	private int cart_id;
-	private int cart_godds_qty;
+	private int cart_goods_qty;
 	private String credate;
 	
 	
@@ -28,10 +28,10 @@ public class ShopCartVO {
 		this.cart_id = cart_id;
 	}
 	public int getCart_godds_qty() {
-		return cart_godds_qty;
+		return cart_goods_qty;
 	}
 	public void setCart_godds_qty(int cart_godds_qty) {
-		this.cart_godds_qty = cart_godds_qty;
+		this.cart_goods_qty = cart_godds_qty;
 	}
 	public String getCredate() {
 		return credate;

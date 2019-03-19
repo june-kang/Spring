@@ -14,11 +14,12 @@ public class MemberDAO {
 	private SqlSessionTemplate mybatis;
 	
 	public MemberVO login(MemberVO vo) {
-		return mybatis.selectOne("bt.mapper.member.SELECT_MEMBER", vo);
+		return mybatis.selectOne("bt.mapper.member.selectMember", vo);
 	}
 	
-	public void logout() {}
-	public void register() {}
+	public void register(MemberVO vo) {
+		mybatis.insert("bt.mapper.member.insertMember", vo);
+	}
 	public void mypage() {}
 
 }

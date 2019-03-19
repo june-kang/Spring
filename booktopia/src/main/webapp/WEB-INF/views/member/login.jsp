@@ -22,7 +22,7 @@
             <br><br>
             <a href="#">아이디 찾기</a> |
             <a href="#">비밀번호 찾기</a> |
-            <a href="/bookshop01/member/addMember.do">회원가입</a> |
+            <a href="{ctxPath}/member/register">회원가입</a> |
             <a href="#">고객 센터</a>
           </form>
         </div>

@@ -6,7 +6,7 @@ public class MemberVO {
 	private String member_id;
 	private String member_pw;
 	private String member_name;
-	private String member_gender;
+	private int member_gender;
 	private String tel1;
 	private String tel2;
 	private String tel3;
@@ -16,7 +16,7 @@ public class MemberVO {
 	private String smssts_yn;
 	private String email1;
 	private String email2;
-	private String emaists_yn;
+	private String emailsts_yn;
 	private String zipcode;
 	private String address;
 	private String namujiAddress;
@@ -24,7 +24,7 @@ public class MemberVO {
 	private String member_birth_m;
 	private String member_birth_d;
 	private String joinDate;
-	private String del_yn;
+	private int del_yn;
 	
 	public String getMember_id() {
 		return member_id;
@@ -44,10 +44,10 @@ public class MemberVO {
 	public void setMember_name(String member_name) {
 		this.member_name = member_name;
 	}
-	public String getMember_gender() {
+	public int getMember_gender() {
 		return member_gender;
 	}
-	public void setMember_gender(String member_gender) {
+	public void setMember_gender(int member_gender) {
 		this.member_gender = member_gender;
 	}
 	public String getTel1() {
@@ -105,10 +105,10 @@ public class MemberVO {
 		this.email2 = email2;
 	}
 	public String getEmaists_yn() {
-		return emaists_yn;
+		return emailsts_yn;
 	}
 	public void setEmaists_yn(String emaists_yn) {
-		this.emaists_yn = emaists_yn;
+		this.emailsts_yn = emaists_yn;
 	}
 	public String getZipcode() {
 		return zipcode;
@@ -152,10 +152,10 @@ public class MemberVO {
 	public void setJoinDate(String joinDate) {
 		this.joinDate = joinDate;
 	}
-	public String getDel_yn() {
+	public int getDel_yn() {
 		return del_yn;
 	}
-	public void setDel_yn(String del_yn) {
+	public void setDel_yn(int del_yn) {
 		this.del_yn = del_yn;
 	}
 	

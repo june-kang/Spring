@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.co.booktopia.service.MemberService;
 import kr.co.booktopia.vo.MemberVO;
@@ -36,13 +37,23 @@ public class MemberController {
 	};
 	
 	@RequestMapping(value="/member/logout")
-	public String logout() {
-		return "/member/logout";
+	public String logout(HttpSession sess) {
+		
+		sess.invalidate();
+		return "redirect:/index";
 	};
 	
-	@RequestMapping(value="/member/register")
+	@RequestMapping(value="/member/register", method=RequestMethod.GET)
 	public String register() {
 		return "/member/register";
+	};
+	
+	@RequestMapping(value="/member/register", method=RequestMethod.POST)
+	public String register(MemberVO vo) {
+		
+		service.register(vo);
+		System.out.println("가입한 아이디 : " +vo.getMember_id());
+		return "redirect:/index";
 	};
 	
 	@RequestMapping(value="/member/mypage")

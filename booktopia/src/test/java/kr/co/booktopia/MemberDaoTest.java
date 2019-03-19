@@ -26,5 +26,7 @@ public class MemberDaoTest {
 		MemberVO user = dao.login(vo);
 		System.out.println("로그인성공!!" + user.getMember_id() + user.getMember_pw());
 	}
-
+	
+	
 }
+

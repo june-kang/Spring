@@ -3,10 +3,24 @@
 <mapper namespace="bt.mapper.goods">
 
 	<select id="selectGoodsList" resultType="kr.co.booktopia.vo.ShopGoodsVO">
-		<![CDATA[
+		<!-- CDATA(Character Data) 해석 파서가 마크업취급x, 모둔문자는 번역되지않고 그대로 응용프로그램에 직접 전달된다. -->
+		<![CDATA[ 
 			SELECT g.*, d.fileName FROM `BT_SHOP_GOODS` AS g, `BT_SHOP_GOODS_IMAGE` AS d
 			WHERE g.GOODS_ID=d.GOODS_ID AND d.FILETYPE='main_image' AND g.GOODS_STATUS=#{goodsStatus}
 			ORDER BY g.GOODS_CREDATE;
+		]]>
+	</select>
+	
+	<select id="selectGoods" resultType="kr.co.booktopia.vo.ShopGoodsVO">
+		<![CDATA[ 
+			SELECT g.*, d.fileName FROM `BT_SHOP_GOODS` AS g, `BT_SHOP_GOODS_IMAGE` AS d
+			WHERE g.GOODS_ID=d.GOODS_ID AND d.FILETYPE='main_image' AND g.GOODS_ID=#{GOODS_ID}; 
+		]]>
+	</select>
+	
+	<select id="selectGoodsImage" resultType="kr.co.booktopia.vo.ShopGoodsImageVO">
+		<![CDATA[
+			SELECT * FROM `BT_SHOP_GOODS_IMAGE` WHERE FILETYPE!='main_image' AND GOODS_ID=#{GOODS_ID};
 		]]>
 	</select>
 
