@@ -2,6 +2,25 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ include file="../_head.jsp"%>
+<script>
+	function addCart(goods_id){
+		
+		$.ajax({
+			type:"get",
+			url:"${ctxPath}/shop/addGoodsInCart",
+			data:{'goods_id':goods_id},
+			success:function(data){
+				if(data.trim()=='success'){
+					alert('장바구니에 상품이 등록되었습니다.');
+				}else {
+					alert('이미 등록된 상품입니다.');
+				}
+			}
+			
+		});
+	} // End addCart
+
+</script>
 <article>
   <hgroup>
     <h1>컴퓨터와 인터넷</h1>
@@ -26,7 +45,7 @@
         <tr class="dot_line">
           <td class="fixed">판매가</td>
           <td class="active">
-            <span><fmt:formatNumber  value="${shopGoodsVO.goods_price*0.9}" type="number" var="dicounted_price" />${discounted_price}원(10%할인)</span>
+            <span><fmt:formatNumber  value="${shopGoodsVO.goods_price*0.9}" type="number" var="discounted_price" />${discounted_price}원(10%할인)</span>
           </td>
         </tr>
         <tr>
@@ -81,8 +100,8 @@
       </tbody>
     </table>
     <ul>
-      <li><a class="buy" href="#">구매하기 </a></li>
-      <li><a class="cart" href="#">장바구니</a></li>
+      <li><a class="buy" href="${ctxPath }/shop/order">구매하기 </a></li>
+      <li><a class="cart" href="javascript:addCart(${shopGoodsVO.goods_id})">장바구니</a></li>
       <li><a class="wish" href="#">위시리스트</a></li>
     </ul>
   </div>
@@ -101,7 +120,9 @@
       <div class="tab_content" id="tab1" style="display: block;">
         <h4>책소개</h4>
         <p>${shopGoodsVO.goods_intro}</p>
-        <img src="${ctxPath }/goods/download?goods_id=${shopGoodsVO.goods_id}&fileName=${shopGoodsImageVO.fileName}">
+        <c:forEach var="ivo" items="${list}">
+        <img src="${ctxPath }/goods/download?goods_id=${shopGoodsVO.goods_id}&fileName=${ivo.getFileName()}">
+        </c:forEach>
       </div>
       <div class="tab_content" id="tab2" style="display: none;">
         <h4>저자소개</h4>

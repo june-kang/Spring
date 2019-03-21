@@ -21,5 +21,9 @@ public class MemberDAO {
 		mybatis.insert("bt.mapper.member.insertMember", vo);
 	}
 	public void mypage() {}
+	
+	public int idCheck(String member_id) {
+		return mybatis.selectOne("bt.mapper.member.selectMemberCount", member_id);
+	}
 
 }

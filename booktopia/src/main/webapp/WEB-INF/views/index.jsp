@@ -61,7 +61,7 @@
 	<div class="main_book">
 		<h3>새로 출판된 책</h3>
 		<c:forEach var="item" items="${goodsMap.newbook }">
-			<div class="book"><a href="#">
+			<div class="book"><a href="${ctxPath }/shop/view?goods_id=${item.goods_id}">
 			<img width="121" height="154" src="${ctxPath}/goods/thumbnail?goods_id=${item.goods_id}&fileName=${item.fileName}">
 					<div class="title">${item.goods_title }</div>
 					<div class="price"><fmt:formatNumber value="${item.goods_price}" type="number" var="goods_price" />${goods_price}원</div>
@@ -80,7 +80,7 @@
 		<h3>스테디셀러</h3>
 		<c:forEach var="item" items="${goodsMap.steadyseller }">
 			<div class="book">
-				<a href="#"> <img width="121" height="154" src="${ctxPath}/goods/thumbnail?goods_id=${item.goods_id}&fileName=${item.fileName}">
+				<a href="${ctxPath }/shop/view?goods_id=${item.goods_id}"> <img width="121" height="154" src="${ctxPath}/goods/thumbnail?goods_id=${item.goods_id}&fileName=${item.fileName}">
 					<div class="title">${item.goods_title }</div>
 					<div class="price"><fmt:formatNumber value="${item.goods_price}" type="number" var="goods_price" />${goods_price}원</div>
 				</a>

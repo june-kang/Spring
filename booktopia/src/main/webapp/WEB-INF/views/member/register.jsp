@@ -1,5 +1,36 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../_head.jsp" %>
+<script src="${ctxPath}/js/jquery-1.6.2.min.js" type="text/javascript"></script>
+<script>
+		
+		function fn_overlapped(){
+			var tag = $('input[name=member_id]')
+			var member_id = tag.val();
+			var isUidOk = false;
+			if(member_id != ""){
+				$.ajax({
+					url:"${ctxPath}/member/idCheck",
+					type:"get",
+					data:{"member_id":member_id},
+					dataType:"json",
+					success:function(data){
+						if(data.result==1){
+							$('.idCheck').css({'color':'red','font-size':'10px'}).text('이미 사용중인 아이디입니다.');
+							tag.focus();
+							isUidOk = false;
+						}else{
+							$('.idCheck').css({'color':'green','font-size':'10px'}).text('사용가능한 아이디입니다.');
+							tag.focus();
+							idUidOk = true;
+						}
+					}
+					
+				});	
+			} else{
+				alert("아이디를 입력하세요.");
+			}
+		}
+</script>
 <article>
   <h3>필수입력사항</h3>
   <form action="${ctxPath }/member/register" method="post">
@@ -9,9 +40,9 @@
           <tr class="dot_line">
             <td class="fixed_join">아이디</td>
             <td>
-              <input type="text" name="_member_id" id="_member_id" size="20">
-
-              <input type="button" id="btnOverlapped" value="중복체크" onclick="fn_overlapped()">
+              <input type="text" name="member_id" id="member_id" size="20">
+			  <input type="button" id="btnOverlapped" value="중복체크" onclick="fn_overlapped();">
+			  <span class="idCheck"></span>
             </td>
           </tr>
           <tr class="dot_line">
@@ -24,9 +55,10 @@
           </tr>
           <tr class="dot_line">
             <td class="fixed_join">성별</td>
-            <td><input type="radio" name="member_gender" value="102">
-              여성<span style="padding-left:120px"></span>
-              <input type="radio" name="member_gender" value="101" checked="">남성
+            <td>
+	            <input type="radio" name="member_gender" value="102" checked="checked">여성
+	            <span style="padding-left:120px"></span>
+	            <input type="radio" name="member_gender" value="101">남성
             </td>
           </tr>
           <tr class="dot_line">
@@ -136,7 +168,7 @@
                 <option value="30">30</option>
                 <option value="31">31</option>
               </select>일 <span style="padding-left:50px"></span>
-              <input type="radio" name="member_birth_gn" value="2" checked="">양력
+              <input type="radio" name="member_birth_gn" value="2" checked="checked">양력
               <span style="padding-left:50px"></span>
               <input type="radio" name="member_birth_gn" value="1">음력
             </td>
@@ -183,7 +215,7 @@
                 <option value="018">018</option>
                 <option value="019">019</option>
               </select> - <input size="10px" type="text" name="hp2"> - <input size="10px" type="text" name="hp3"><br> <br>
-              <input type="checkbox" name="smssts_yn" value="Y" checked=""> 쇼핑몰에서 발송하는 SMS 소식을 수신합니다.</td>
+              <input type="checkbox" name="smssts_yn" value="Y" checked="checked"> 쇼핑몰에서 발송하는 SMS 소식을 수신합니다.</td>
           </tr>
           <tr class="dot_line">
             <td class="fixed_join">이메일<br>(e-mail)</td>
@@ -201,7 +233,9 @@
                 <option value="empal.com">empal.com</option>
                 <option value="korea.com">korea.com</option>
                 <option value="freechal.com">freechal.com</option>
-              </select><br> <br> <input type="checkbox" name="emailsts_yn" value="Y" checked=""> 쇼핑몰에서 발송하는 e-mail을 수신합니다.</td>
+              </select>
+              <br> <br>
+              <input type="checkbox" name="emailsts_yn" value="Y" checked=""> 쇼핑몰에서 발송하는 e-mail을 수신합니다.</td>
           </tr>
           <tr class="dot_line">
             <td class="fixed_join">주소</td>

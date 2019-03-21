@@ -1,320 +1,110 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ include file="../_head.jsp" %>
 <article>
-  <!-- 상품 리스트 -->
-  <section class="list">
-    <nav>
-      <h1>IT/인터넷</h1>
-    </nav>
-    <ul class="sort">
-      <li><a href="#">판매많은순</a></li>
-      <li><a href="#">낮은가격순</a></li>
-      <li><a href="#">높은가격순</a></li>
-      <li><a href="#">평점높은순</a></li>
-      <li><a href="#">후기많은순</a></li>
-      <li><a href="#">최근등록순</a></li>
-    </ul>
-    <section>
-      <article>
-        <ul>
-          <li>
-            <a href="#" class="thumb"><img src="/booktopia/goods/thumb_336.png" alt="상품이미지"></a>
-          </li>
-          <li>
-            <h3 class="name">짠테크 가계부</h3>
-            <p class="desc">
-              <a href="#">마인크래프트를 이용해 코딩을 배울 수 있다는 이야기를 들어 본 적 있나요? ...</a>
-            </p>
-          </li>
-          <li>
-            <div class="dis_price">
-              <ins>27,000</ins>
-            </div>
-            <div class="org_price">
-              <del>30,000</del>
-              <span>10%</span>
-            </div>
-            <span class="freeshipping">무료배송</span>
-          </li>
-          <li>
-            <h4 class="seller"><i class="fas fa-home"></i>&nbsp;블루포스</h4>
-            <h5 class="badge power">판매자등급</h5>
-            <h6 class="rating star1">상품평</h6>
-          </li>
-        </ul>
-      </article>
-      <article>
-        <ul>
-          <li>
-            <a href="#" class="thumb"><img src="/booktopia/img/thumb-sample-t2.jpg" alt="상품이미지"></a>
-          </li>
-          <li>
-            <h3 class="name">상품명</h3>
-            <p class="desc">
-              <a href="#">상품설명</a>
-            </p>
-          </li>
-          <li>
-            <div class="dis_price">
-              <ins>27,000</ins>
-            </div>
-            <div class="org_price">
-              <del>30,000</del>
-              <span>10%</span>
-            </div>
-            <span class="freeshipping">무료배송</span>
-          </li>
-          <li>
-            <h4 class="seller"><i class="fas fa-home"></i>&nbsp;판매자상점명</h4>
-            <h5 class="badge great">판매자등급</h5>
-            <h6 class="rating star2">상품평</h6>
-          </li>
-        </ul>
-      </article>
-      <article>
-        <ul>
-          <li>
-            <a href="#" class="thumb"><img src=/booktopia/img/thumb-sample-t3.jpg" alt="상품이미지"></a>
-          </li>
-          <li>
-            <h3 class="name">상품명</h3>
-            <p class="desc">
-              <a href="#">상품설명</a>
-            </p>
-          </li>
-          <li>
-            <div class="dis_price">
-              <ins>27,000</ins>
-            </div>
-            <div class="org_price">
-              <del>30,000</del>
-              <span>10%</span>
-            </div>
-            <span class="freeshipping">무료배송</span>
-          </li>
-          <li>
-            <h4 class="seller"><i class="fas fa-home"></i>&nbsp;판매자상점명</h4>
-            <h5 class="badge power great">판매자등급</h5>
-            <h6 class="rating star3">상품평</h6>
-          </li>
-        </ul>
-      </article>
-      <article>
-        <ul>
-          <li>
-            <a href="#" class="thumb"><img src="/booktopia/img/thumb-sample-t4.jpg" alt="상품이미지"></a>
-          </li>
-          <li>
-            <h3 class="name">상품명</h3>
-            <p class="desc">
-              <a href="#">상품설명</a>
-            </p>
-          </li>
-          <li>
-            <div class="dis_price">
-              <ins>27,000</ins>
-            </div>
-            <div class="org_price">
-              <del>30,000</del>
-              <span>10%</span>
-            </div>
-            <span class="freeshipping">무료배송</span>
-          </li>
-          <li>
-            <h4 class="seller"><i class="fas fa-home"></i>&nbsp;판매자상점명</h4>
-            <h5 class="badge power great">판매자등급</h5>
-            <h6 class="rating star4">상품평</h6>
-          </li>
-        </ul>
-      </article>
-      <article>
-        <ul>
-          <li>
-            <a href="#" class="thumb"><img src="/booktopia/img/thumb-sample-t5.jpg" alt="상품이미지"></a>
-          </li>
-          <li>
-            <h3 class="name">상품명</h3>
-            <p class="desc">
-              <a href="#">상품설명</a>
-            </p>
-          </li>
-          <li>
-            <div class="dis_price">
-              <ins>27,000</ins>
-            </div>
-            <div class="org_price">
-              <del>30,000</del>
-              <span>10%</span>
-            </div>
-            <span class="freeshipping">무료배송</span>
-          </li>
-          <li>
-            <h4 class="seller"><i class="fas fa-home"></i>&nbsp;판매자상정명</h4>
-            <h5 class="badge power great">판매자등급</h5>
-            <h6 class="rating star5">상품평</h6>
-          </li>
-        </ul>
-      </article>
-      <article>
-        <ul>
-          <li>
-            <a href="#" class="thumb"><img src="/booktopia/img/thumb-sample-t5.jpg" alt="상품이미지"></a>
-          </li>
-          <li>
-            <h3 class="name">상품명</h3>
-            <p class="desc">
-              <a href="#">상품설명</a>
-            </p>
-          </li>
-          <li>
-            <div class="dis_price">
-              <ins>27,000</ins>
-            </div>
-            <div class="org_price">
-              <del>30,000</del>
-              <span>10%</span>
-            </div>
-            <span class="freeshipping">무료배송</span>
-          </li>
-          <li>
-            <h4 class="seller"><i class="fas fa-home"></i>&nbsp;판매자상점명</h4>
-            <h5 class="badge power great">판매자등급</h5>
-            <h6 class="rating star5">상품평</h6>
-          </li>
-        </ul>
-      </article>
-      <article>
-        <ul>
-          <li>
-            <a href="#" class="thumb"><img src="/booktopia/img/thumb-sample-t5.jpg" alt="상품이미지"></a>
-          </li>
-          <li>
-            <h3 class="name">상품명</h3>
-            <p class="desc">
-              <a href="#">상품설명</a>
-            </p>
-          </li>
-          <li>
-            <div class="dis_price">
-              <ins>27,000</ins>
-            </div>
-            <div class="org_price">
-              <del>30,000</del>
-              <span>10%</span>
-            </div>
-            <span class="freeshipping">무료배송</span>
-          </li>
-          <li>
-            <h4 class="seller"><i class="fas fa-home"></i>&nbsp;판매자상점명</h4>
-            <h5 class="badge power great">판매자등급</h5>
-            <h6 class="rating star5">상품평</h6>
-          </li>
-        </ul>
-      </article>
-      <article>
-        <ul>
-          <li>
-            <a href="#" class="thumb"><img src="/booktopia/img/thumb-sample-t5.jpg" alt="상품이미지"></a>
-          </li>
-          <li>
-            <h3 class="name">상품명</h3>
-            <p class="desc">
-              <a href="#">상품설명</a>
-            </p>
-          </li>
-          <li>
-            <div class="dis_price">
-              <ins>27,000</ins>
-            </div>
-            <div class="org_price">
-              <del>30,000</del>
-              <span>10%</span>
-            </div>
-            <span class="freeshipping">무료배송</span>
-          </li>
-          <li>
-            <h4 class="seller"><i class="fas fa-home"></i>&nbsp;판매자상점명</h4>
-            <h5 class="badge power great">판매자등급</h5>
-            <h6 class="rating star5">상품평</h6>
-          </li>
-        </ul>
-      </article>
-      <article>
-        <ul>
-          <li>
-            <a href="#" class="thumb"><img src="/booktopia/img/thumb-sample-t5.jpg" alt="상품이미지"></a>
-          </li>
-          <li>
-            <h3 class="name">상품명</h3>
-            <p class="desc">
-              <a href="#">상품설명</a>
-            </p>
-          </li>
-          <li>
-            <div class="dis_price">
-              <ins>27,000</ins>
-            </div>
-            <div class="org_price">
-              <del>30,000</del>
-              <span>10%</span>
-            </div>
-            <span class="freeshipping">무료배송</span>
-          </li>
-          <li>
-            <h4 class="seller"><i class="fas fa-home"></i>&nbsp;판매자상점명</h4>
-            <h5 class="badge power great">판매자등급</h5>
-            <h6 class="rating star5">상품평</h6>
-          </li>
-        </ul>
-      </article>
-      <article>
-        <ul>
-          <li>
-            <a href="#" class="thumb"><img src="/booktopia/img/thumb-sample-t5.jpg" alt="상품이미지"></a>
-          </li>
-          <li>
-            <h3 class="name">상품명</h3>
-            <p class="desc">
-              <a href="#">상품설명</a>
-            </p>
-          </li>
-          <li>
-            <div class="dis_price">
-              <ins>27,000</ins>
-            </div>
-            <div class="org_price">
-              <del>30,000</del>
-              <span>10%</span>
-            </div>
-            <span class="freeshipping">무료배송</span>
-          </li>
-          <li>
-            <h4 class="seller"><i class="fas fa-home"></i>&nbsp;판매자상점명</h4>
-            <h5 class="badge power great">판매자등급</h5>
-            <h6 class="rating star5">상품평</h6>
-          </li>
-        </ul>
-      </article>
-    </section>
-    <div class="paging">
-      <span class="prev">
-        <a href="#">&lt;&nbsp;이전</a>
-      </span>
-      <span class="num">
-        <a href="#" class="on">1</a>
-        <a href="#">2</a>
-        <a href="#">3</a>
-        <a href="#">4</a>
-        <a href="#">5</a>
-        <a href="#">6</a>
-        <a href="#">7</a>
-      </span>
-      <span class="next">
-        <a href="#">다음&nbsp;&gt;</a>
-      </span>
+  <title>도서 목록 페이지</title>
+  <hgroup>
+    <h1>컴퓨터와 인터넷</h1>
+    <h2>오늘의 책</h2>
+  </hgroup>
+  <section id="new_book">
+    <h3>새로나온 책</h3>
+    <div id="left_scroll">
+      <a href='javascript:slide("left");'><img src="${ctxPath}/img/left.gif"></a>
     </div>
-  </section>
+    <div id="carousel_inner">
+      <ul id="carousel_ul">
+		<c:choose>
+      		<c:when test="${empty goodsList}">
+      			<!-- 검색 후 해당 도서가 없을때 -->
+				<li>
+					<div id="book"><a href="#"><h1>제품이없습니다.</h1></a></div>
+				</li>
+      		</c:when>
+      		<c:otherwise>
+      			<c:forEach var="item" items="${list}">
+		        	<li>
+			          <div id="book">
+			            <a href="#"><img width="75" alt="" src="${ctxPath}/goods/thumbnail?goods_id=${item.goods_id}&fileName=${item.fileName}"></a>
+			            <div class="sort">[컴퓨터 인터넷]</div>
+			            <div class="title">
+			              <a href="#">${item.goods_title}</a>
+			            </div>
+			            <div class="writer">${item.goods_writer} | ${item.goods_publisher}</div>
+			            <div class="price">
+			            	<span><fmt:formatNumber value="${item.goods_price}" type="number" var="goods_price" />${goods_price}원</span><br>
+			            	<fmt:formatNumber  value="${item.goods_price*0.9}" type="number" var="discounted_price" />${discounted_price}원(10%할인)
+			            </div>
+			          </div>
+			        </li>
+		        </c:forEach>
+      		</c:otherwise>
+      	</c:choose>
+      </ul>
+    </div>
+    <div id="right_scroll">
+      <a href='javascript:slide("right");'><img src="/booktopia/img/right.gif"></a>
+    </div>
+    <input id="hidden_auto_slide_seconds" type="hidden" value="4000">
 
+    <div class="clear"></div>
+  </section>
+  <div class="clear"></div>
+  <div id="sorting">
+    <ul>
+      <li><a class="active" href="#">베스트 셀러</a></li>
+      <li><a href="#">최신 출간</a></li>
+      <li><a style="border: currentColor; border-image: none;" href="#">최근 등록</a></li>
+    </ul>
+  </div>
+  <table id="list_view">
+    <tbody>
+	  <c:forEach var="item" items="${list}">
+	      <tr>
+	        <td class="goods_image">
+	          <a href="#"><img width="75" alt="" src="${ctxPath}/goods/thumbnail?goods_id=${item.goods_id}&fileName=${item.fileName}"></a>
+	        </td>
+	        <td class="goods_description">
+	          <h2><a href="#">${item.goods_title}</a></h2>
+	          <c:set var="goods_pub_date" value="${item.goods_published_date}" />
+	          <c:set var="arr" value="${fn:split(goods_pub_date,' ')}" />
+	          <div class="writer_press">${item.goods_writer}|${item.goods_publisher}|<c:out value="${arr[0]}"/></div>
+	        </td>
+	        <td class="price">
+	          <span><fmt:formatNumber value="${item.goods_price}" type="number" var="goods_price" />${goods_price}원</span><br>
+	          <strong><fmt:formatNumber  value="${item.goods_price*0.9}" type="number" var="discounted_price" />${discounted_price}원</strong><br>(10% 할인)
+	        </td>
+	        <td><input type="checkbox" value=""></td>
+	        <td class="buy_btns">
+	          <ul>
+	            <li><a href="#">장바구니</a></li>
+	            <li><a href="#">구매하기</a></li>
+	            <li><a href="#">비교하기</a></li>
+	          </ul>
+	        </td>
+	      </tr>
+      </c:forEach>
+    </tbody>
+  </table>
+  <div class="clear"></div>
+  <div id="page_wrap">
+    <ul id="page_control">
+      <li><a class="no_border" href="#">Prev</a></li>
+      <li><a class="page_contrl_active" href="#">1</a></li>
+      <li><a href="#">2</a></li>
+      <li><a href="#">3</a></li>
+      <li><a href="#">4</a></li>
+      <li><a href="#">5</a></li>
+      <li><a href="#">6</a></li>
+      <li><a href="#">7</a></li>
+      <li><a href="#">8</a></li>
+      <li><a href="#">9</a></li>
+      <li><a href="#">10</a></li>
+      <li><a class="no_border" href="#">Next</a></li>
+    </ul>
+  </div>
 </article>
 
 <%@ include file="../_tail.jsp" %>

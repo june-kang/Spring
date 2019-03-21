@@ -1,5 +1,8 @@
 package kr.co.booktopia.vo;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class ShopCartVO {
 	
 	private String member_id;
@@ -27,11 +30,11 @@ public class ShopCartVO {
 	public void setCart_id(int cart_id) {
 		this.cart_id = cart_id;
 	}
-	public int getCart_godds_qty() {
+	public int getCart_goods_qty() {
 		return cart_goods_qty;
 	}
-	public void setCart_godds_qty(int cart_godds_qty) {
-		this.cart_goods_qty = cart_godds_qty;
+	public void setCart_godds_qty(int cart_goods_qty) {
+		this.cart_goods_qty = cart_goods_qty;
 	}
 	public String getCredate() {
 		return credate;

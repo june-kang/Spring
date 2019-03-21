@@ -8,5 +8,6 @@ public interface MemberService {
 	public void logout();
 	public void register(MemberVO vo);
 	public void mypage();
+	public int idCheck(String member_id);
 
 }

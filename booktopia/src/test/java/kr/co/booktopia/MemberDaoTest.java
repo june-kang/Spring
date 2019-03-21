@@ -17,7 +17,7 @@ public class MemberDaoTest {
 	@Inject
 	private MemberDAO dao;
 	
-	@Test
+	
 	public void loginTest() {
 		MemberVO vo = new MemberVO();
 		vo.setMember_id("hong");
@@ -25,6 +25,12 @@ public class MemberDaoTest {
 		
 		MemberVO user = dao.login(vo);
 		System.out.println("로그인성공!!" + user.getMember_id() + user.getMember_pw());
+	}
+	
+	@Test
+	public void idCheck() {
+		int count = dao.idCheck("aaaa");
+		System.out.println("아이디체크 성공!! result = " + count);
 	}
 	
 	

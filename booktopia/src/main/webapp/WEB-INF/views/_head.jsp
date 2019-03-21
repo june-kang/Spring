@@ -17,6 +17,49 @@
   <script src="${ctxPath}/js/basic-jquery-slider.js" type="text/javascript"></script>
   <script src="${ctxPath}/js/tabs.js" type="text/javascript"></script>
   <script src="${ctxPath}/js/carousel.js" type="text/javascript"></script>
+  <script>
+  	$(function(){
+  		var input = $('input[name=searchWord]');
+  		
+  		input.keyup(function(){
+  			
+  			
+  			var value = input.val();
+  			if(value == ''){
+  				$('#suggest').hide();
+  				return false;
+  			}
+  			
+  			$.ajax({
+  				type:"get",
+  				async : true, // false인 경우 동기식으로 처리한다.
+  				url : "${ctxPath}/shop/keywordAutoComplete",
+  				data : {keyword:value},
+  				success : function(data){
+  					
+  					if(data.keyword.length > 0){
+  						$('#suggestList').children().remove();
+  						$('#suggest').show();
+  						html = '';
+  						
+  						for(var i in data.keyword){
+  							html += "<a href='${ctxPath}/shop/search?searchWord="+data.keyword[i]+"'>"+data.keyword[i]+"</a>";
+  						}
+  						$('#suggestList').append(html);
+  						
+  					} else{
+  						$('#suggest').hide();
+  						$('#suggestList').children().remove();
+  					}
+  				}
+  					
+  				
+  			}); // end ajax
+  		});
+  		
+  	});
+  
+  </script>
 
   <title>북토피아::메인</title>
 </head>
@@ -29,26 +72,30 @@
         </div>
         <div id="head_link">
           <ul>
-          	<c:if test="${sessionScope.member==null }">
+          	<c:if test="${sessionScope.memberVO==null }">
             <li><a href="${ctxPath}/member/login">로그인</a></li>
             <li><a href="${ctxPath}/member/register">회원가입</a></li>
             </c:if>
-            <c:if test="${sessionScope.member != null }">
-            <li><a href="${ctxPath }/member/logout">로그아웃</a></li>
+            <c:if test="${sessionScope.memberVO != null }">
+            <li><a href="${ctxPath}/member/logout">로그아웃</a></li>
+            <li><a href="${ctxPath}/shop/cart">장바구니</a></li>
             </c:if>
             <li><a href="#">고객센터</a></li>
           </ul>
         </div>
         <br>
         <div id="search">
-          <form name="frmSearch" action="#">
-            <input name="searchWord" class="main_input" type="text" onkeyup="keywordSearch()">
+          <form name="frmSearch" action="${ctxPath }/shop/search" autocomplete="off">
+			<input name="searchWord" class="main_input" type="text" />
             <input type="submit" name="search" class="btn1" value="검 색">
           </form>
+          <div id="suggest">
+          	<div id="suggestList"></div>
+        	</div>
         </div>
-        <div id="suggest">
-          <div id="suggestList"></div>
-        </div>
+        
+      
+      
       </header>
       <div class="clear"></div>
       <aside>

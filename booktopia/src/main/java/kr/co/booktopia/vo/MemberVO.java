@@ -1,6 +1,8 @@
 package kr.co.booktopia.vo;
 
+import org.springframework.stereotype.Component;
 
+@Component
 public class MemberVO {
 	
 	private String member_id;
@@ -23,8 +25,10 @@ public class MemberVO {
 	private String member_birth_y;
 	private String member_birth_m;
 	private String member_birth_d;
+	
 	private String joinDate;
 	private int del_yn;
+	private int member_birth_gn;
 	
 	public String getMember_id() {
 		return member_id;
@@ -107,8 +111,8 @@ public class MemberVO {
 	public String getEmaists_yn() {
 		return emailsts_yn;
 	}
-	public void setEmaists_yn(String emaists_yn) {
-		this.emailsts_yn = emaists_yn;
+	public void setEmailsts_yn(String emailsts_yn) {
+		this.emailsts_yn = emailsts_yn;
 	}
 	public String getZipcode() {
 		return zipcode;
@@ -157,6 +161,13 @@ public class MemberVO {
 	}
 	public void setDel_yn(int del_yn) {
 		this.del_yn = del_yn;
+	}
+	
+	public int getMember_birth_gn() {
+		return member_birth_gn;
+	}
+	public void setMember_birth_gn(int member_birth_gn) {
+		this.member_birth_gn = member_birth_gn;
 	}
 	
 

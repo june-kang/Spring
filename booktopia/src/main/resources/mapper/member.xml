@@ -11,6 +11,7 @@
 		member_id=#{member_id},
 		member_pw=#{member_pw},
 		member_name=#{member_name},
+		member_gender=#{member_gender},
 		tel1=#{tel1},
 		tel2=#{tel2},
 		tel3=#{tel3},
@@ -27,8 +28,13 @@
 		member_birth_y=#{member_birth_y},
 		member_birth_m=#{member_birth_m},
 		member_birth_d=#{member_birth_d},
+		member_birth_gn=#{member_birth_gn},
 		joinDate=Now();
 	</insert>
+	
+	<select id="selectMemberCount" resultType="int">
+		SELECT COUNT(*) FROM `BT_MEMBER` WHERE member_id=#{member_id};
+	</select>
 
 
 </mapper>

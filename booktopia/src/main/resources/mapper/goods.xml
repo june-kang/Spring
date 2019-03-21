@@ -14,13 +14,80 @@
 	<select id="selectGoods" resultType="kr.co.booktopia.vo.ShopGoodsVO">
 		<![CDATA[ 
 			SELECT g.*, d.fileName FROM `BT_SHOP_GOODS` AS g, `BT_SHOP_GOODS_IMAGE` AS d
-			WHERE g.GOODS_ID=d.GOODS_ID AND d.FILETYPE='main_image' AND g.GOODS_ID=#{GOODS_ID}; 
+			WHERE g.goods_id=d.goods_id AND d.fileType='main_image' AND g.goods_id=#{goods_id}; 
 		]]>
 	</select>
 	
 	<select id="selectGoodsImage" resultType="kr.co.booktopia.vo.ShopGoodsImageVO">
 		<![CDATA[
 			SELECT * FROM `BT_SHOP_GOODS_IMAGE` WHERE FILETYPE!='main_image' AND GOODS_ID=#{GOODS_ID};
+		]]>
+	</select>
+	
+	<select id="selectGoodsbyWord" resultType="kr.co.booktopia.vo.ShopGoodsVO">
+		<![CDATA[
+			SELECT g.*, d.fileName FROM `BT_SHOP_GOODS` AS g, `BT_SHOP_GOODS_IMAGE` AS d
+			WHERE g.goods_id=d.goods_id AND d.fileType='main_image'
+			AND g.goods_title LIKE '%'|| #{searchWord}||'%'
+			ORDER BY g.goods_credate DESC;
+		]]>
+	</select>
+	
+	<select id="selectKeywordSearchForAutoComplete" resultType="String">
+		<![CDATA[
+			SELECT goods_title FROM `BT_SHOP_GOODS` WHERE goods_title LIKE CONCAT('%', #{keyword}, '%') ORDER BY goods_credate DESC;
+		]]>
+	</select>
+	
+	<insert id="insertGoodsInCart">
+		<![CDATA[
+			INSERT INTO `BT_SHOP_CART` (cart_id, goods_id, member_id, credate)
+			VALUES (#{cart_id}, #{goods_id}, #{member_id}, NOW());
+		]]>
+	</insert>
+	
+	<select id="selectCountInCart" resultType="String">
+		<![CDATA[
+			SELECT IF(COUNT(*)=0, 'false', 'true') FROM `BT_SHOP_CART`
+			WHERE member_id=#{member_id} AND goods_id=#{goods_id};
+		]]>	
+	</select>
+	
+	<select id="selectMaxCartId" resultType="int">
+		<![CDATA[
+			SELECT IF(ISNULL(MAX(cart_id)), 1, MAX(cart_id)+1) FROM `BT_SHOP_CART`;
+		]]>
+	</select>
+	
+	<select id="selectCartList" resultType="kr.co.booktopia.vo.ShopCartVO">
+		<![CDATA[
+			SELECT * FROM `BT_SHOP_CART` WHERE member_id=#{member_id};
+		]]>
+	</select>
+	
+	<select id="selectGoodsListForCart" resultType="kr.co.booktopia.vo.ShopGoodsVO">
+		<![CDATA[
+			SELECT g.*, d.fileName FROM `BT_SHOP_GOODS` AS g, `BT_SHOP_GOODS_IMAGE` AS d
+			WHERE g.goods_id = d.goods_id
+			AND d.fileType='main_image'
+			AND g.goods_id IN
+		]]>
+		<!-- foreach 기본 문법 
+			collection - 전달받은 인자. List나 Array 형태만 가능 / List 인스턴스 "list" Array 인스턴스 "array" 사용!
+			item - 전달받은 인자값을 alias 명으로 대체
+			open - 해당 구문이 시작될때 삽입할 문자열
+			close - 해당 구문이 종료될때 삽입할 문자열
+			separator - 반복되는 사이에 출력할 문자열
+			index - 반복되는 구문번호. 0부터 순차적으로 증가
+		 -->
+		<foreach item="item" collection="list" open="(" separator="," close=")">
+		#{item.goods_id}
+		</foreach>
+		<!-- 
+			AND g.goods_id IN (상품아이디1, 상품아이디2, 상품아이디3 ... )
+		 -->
+		<![CDATA[
+			ORDER BY g.goods_credate;
 		]]>
 	</select>
 
