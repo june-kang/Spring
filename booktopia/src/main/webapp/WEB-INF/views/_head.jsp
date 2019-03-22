@@ -80,6 +80,9 @@
             <li><a href="${ctxPath}/member/logout">로그아웃</a></li>
             <li><a href="${ctxPath}/shop/cart">장바구니</a></li>
             </c:if>
+            <c:if test="${memberVO.member_id eq 'admin' }" >
+            <li><a href="${ctxPath }/admin">관리자페이지</a></li>
+            </c:if>
             <li><a href="#">고객센터</a></li>
           </ul>
         </div>

@@ -40,9 +40,17 @@ public class MemberController {
 		MemberVO memberVO = service.login(vo);
 		
 		if(memberVO != null) {
-			sess.setAttribute("isLogon", true);
-			sess.setAttribute("memberVO", memberVO);
-			return "redirect:/index";
+			if(memberVO.getMember_id().equals("admin")) {
+				sess.setAttribute("isLogon", true);
+				sess.setAttribute("memberVO", memberVO);
+				return "redirect:/admin";
+				
+			} else {
+				sess.setAttribute("isLogon", true);
+				sess.setAttribute("memberVO", memberVO);
+				return "redirect:/index";
+			}
+			
 		} else {
 			return "redirect:/member/login?result=fail";
 		}

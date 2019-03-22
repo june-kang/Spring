@@ -120,7 +120,7 @@
 	</table>
 	<center>
 		<br><br>
-			<a href="#"><img width="75" alt="" src="${ctxPath }/img/btn_order_final.jpg"></a>
+			<a href="${ctxPath }/shop/order?"><img width="75" alt="" src="${ctxPath }/img/btn_order_final.jpg"></a>
 			<a href="#"><img width="75" alt="" src="${ctxPath }/img/btn_shoping_continue.jpg"></a>
 		<center></center>
 	</center>

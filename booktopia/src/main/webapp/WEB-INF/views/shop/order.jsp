@@ -1,6 +1,15 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../_head.jsp" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<c:set var="myCartList" value="${cartMap.myCartList}" />
+<c:set var="myGoodsList" value="${cartMap.myGoodsList}" />
+<c:set var="totalGoodsNum" value="0" />
+<c:set var="totalDeliveryPrice" value="0" />
+<c:set var="totalDiscountedPrice" value="0" />
+<script>
 
+</script>
 <article>
   <h1>1.주문확인</h1>
   <form name="form_order">
@@ -14,31 +23,36 @@
           <td>예상적립금</td>
           <td>주문금액합계</td>
         </tr>
+        <c:forEach var="item" items="${myGoodsList}" varStatus="cnt">
+        <c:set var="cart_goods_qty" value="${myCartList[cnt.index].cart_goods_qty }" />
         <tr>
           <td class="goods_image">
             <a href="#">
-              <img width="75" alt="" src="/booktopia/goods/thumb_336.png">
+              <img width="75" alt="" src="${ctxPath }/goods/thumbnail?goods_id=${item.goods_id}&fileName=${item.fileName}">
             </a>
           </td>
           <td>
-            <h2><a href="#">짠테크 가계부</a></h2>
+            <h2><a href="#">${item.goods_title }</a></h2>
           </td>
           <td>
-            <h2>1개</h2>
+            <h2>${cart_goods_qty }개</h2>
           </td>
           <td>
-            <h2>30000원 (10% 할인)</h2>
+            <h2><fmt:formatNumber value="${item.goods_sales_price*0.9 }" type="number" var="discounted_price" />${discounted_price }원 (10% 할인)</h2>
           </td>
           <td>
-            <h2>0원</h2>
+            <h2>${totalDeliveryPrice }원</h2>
           </td>
           <td>
-            <h2>1500원</h2>
+            <h2>${item.goods_point }원</h2>
           </td>
           <td>
-            <h2>30000원</h2>
+            <h2><fmt:formatNumber value="${item.goods_sales_price*0.9*cart_goods_qty }" type="number" var="total_sales_price" />${total_sales_price}원</h2>
           </td>
+          <c:set var="totalGoodsPrice" value="${totalGoodsPrice+item.goods_sales_price*0.9*cart_goods_qty }" />
+		  <c:set var="totalGoodsNum" value="${totalGoodsNum+1 }" />
         </tr>
+        </c:forEach>
       </tbody>
     </table>
     <div class="clear"></div>
@@ -152,16 +166,14 @@
               <h2>이름</h2>
             </td>
             <td>
-              <input type="text" value="홍길동" size="15">
+              <input type="text" value="${memberVO.member_name }" size="15">
             </td>
           </tr>
           <tr class="dot_line">
             <td>
               <h2>핸드폰</h2>
             </td>
-            <td>
-              <input type="text" value="010-1111-2222" size="15">
-            </td>
+            <td><input type="text" value="${memberVO.hp1}-${memberVO.hp2}-${memberVO.hp3}" size="15"></td>
           </tr>
           <tr class="dot_line">
             <td>
@@ -228,24 +240,24 @@
         </tr>
         <tr cellpadding="40" align="center">
           <td id="">
-            <p id="p_totalNum">1개</p>
+            <p id="p_totalNum">${totalGoodsNum }개</p>
             <input id="h_total_order_goods_qty" type="hidden" value="1">
           </td>
           <td>
-            <p id="p_totalPrice">30000원</p>
+            <p id="p_totalPrice">${totalGoodsPrice }원</p>
           </td>
-          <td><img width="25" alt="" src="/booktopia/img/plus.jpg"></td>
+          <td><img width="25" alt="" src="${ctxPath }/img/plus.jpg"></td>
           <td>
-            <p id="p_totalDelivery">0원</p>
+            <p id="p_totalDelivery">${totalDeliveryPrice }원</p>
           </td>
           <td>
-            <img width="25" alt="" src="/booktopia/img/minus.jpg"></td>
+            <img width="25" alt="" src="${ctxPath }/img/minus.jpg"></td>
           <td>
-            <p id="p_totalSalesPrice">0원</p>
+            <p id="p_totalSalesPrice">${totalDiscountedPrice }원</p>
           </td>
-          <td><img width="25" alt="" src="/booktopia/img/equal.jpg"></td>
+          <td><img width="25" alt="" src="${ctxPath }/img/equal.jpg"></td>
           <td>
-            <p id="p_final_totalPrice"><font size="15">30000원</font></p>
+            <p id="p_final_totalPrice"><font size="15"><fmt:formatNumber value="${totalGoodsPrice+totalDeliveryPrice-totalDiscountedPrice }" type="number" var="total_order_price" />${total_order_price}원</font></p>
           </td>
         </tr>
       </tbody>

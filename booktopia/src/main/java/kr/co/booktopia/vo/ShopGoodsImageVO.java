@@ -9,7 +9,7 @@ public class ShopGoodsImageVO {
 	private String fileType;
 	private String credate;
 	
-	
+
 	public int getImage_id() {
 		return image_id;
 	}

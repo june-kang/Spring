@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="bt.mapper.admin">
+	<insert id="insertGoods" parameterType="kr.co.booktopia.vo.ShopGoodsVO" useGeneratedKeys="true" keyProperty="goods_id">
+	 <![CDATA[
+		INSERT INTO `BT_SHOP_GOODS` SET
+			goods_sort=#{goods_sort},
+			goods_title=#{goods_title},
+			goods_writer=#{goods_writer},
+			goods_publisher=#{goods_publisher},
+			goods_price=#{goods_price},
+			goods_sales_price=#{goods_sales_price},
+			goods_point=#{goods_point},
+			goods_published_date=#{goods_published_date},
+			goods_total_page=#{goods_total_page},
+			goods_isbn=#{goods_isbn},
+			goods_delivery_price=#{goods_delivery_price},
+			goods_delivery_date=#{goods_delivery_date},
+			goods_status=#{goods_status},
+			goods_intro=#{goods_intro},
+			goods_writer_intro=#{goods_writer_intro},
+			goods_publisher_comment=#{goods_publisher_comment},
+			goods_recommendation=#{goods_recommendation},
+			goods_contents_order=#{goods_contents_order},
+			goods_credate=NOW();
+	 
+	 ]]>
+		
+	</insert>
+	
+	<insert id="insertImage">
+		<![CDATA[ 
+		INSERT INTO `BT_SHOP_GOODS_IMAGE` SET
+		goods_id=#{goods_id},
+		fileName=#{fileName},
+		reg_id=#{reg_id},
+		fileType=#{fileType},
+		credate=NOW();
+		]]>
+	</insert>
+
+
+</mapper>

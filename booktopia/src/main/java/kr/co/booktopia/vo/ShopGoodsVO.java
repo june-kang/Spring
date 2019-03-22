@@ -1,5 +1,7 @@
 package kr.co.booktopia.vo;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class ShopGoodsVO {
 	
 	private int goods_id;
@@ -24,6 +26,9 @@ public class ShopGoodsVO {
 	private String goods_credate;
 	
 	private String fileName;
+	
+	private MultipartFile fname;
+	
 	
 	
 	public int getGoods_id() {
@@ -153,7 +158,12 @@ public class ShopGoodsVO {
 		this.fileName = fileName;
 	}
 	
-	
+	public MultipartFile getFname() {
+		return fname;
+	}
+	public void setFname(MultipartFile fname) {
+		this.fname = fname;
+	}
 
 	
 	

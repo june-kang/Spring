@@ -1,4 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="ctxPath" value="${pageContext.request.contextPath}" />
 <html>
 <head>
   <meta charset="utf-8">
@@ -26,8 +28,8 @@
         </div>
         <div id="head_link">
           <ul>
-            <li><a href="#">로그아웃</a></li>
-            <li><a href="#">메인 홈</a></li>
+            <li><a href="${ctxPath }/member/logout">로그아웃</a></li>
+            <li><a href="${ctxPath }/index">메인 홈</a></li>
             <li><a href="#">고객센터</a></li>
           </ul>
         </div>
@@ -40,9 +42,9 @@
             <li>
               <h3>주요기능</h3>
               <ul>
-                <li><a href="#">상품관리</a></li>
-                <li><a href="#">주문관리</a></li>
-                <li><a href="#">회원관리</a></li>
+                <li><a href="${ctxPath }/admin/goods">상품관리</a></li>
+                <li><a href="${ctxPath }/admin/order">주문관리</a></li>
+                <li><a href="${ctxPath }/admin/member">회원관리</a></li>
                 <li><a href="#">배송관리</a></li>
                 <li><a href="#">게시판관리</a></li>
               </ul>
@@ -214,7 +216,7 @@
                       <tr>
                         <td align="right">이미지파일 첨부</td>
 
-                        <td align="left"> <input type="button" value="파일 추가"></td>
+                        <td align="left"> <input type="file" name="fname" value="파일 추가"></td>
                         <td>
                           <div id="d_file">
                           </div>

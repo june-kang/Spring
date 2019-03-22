@@ -1,4 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="ctxPath" value="${pageContext.request.contextPath}" />
 <html>
 <head>
   <meta charset="utf-8">
@@ -25,8 +27,8 @@
         </div>
         <div id="head_link">
           <ul>
-            <li><a href="/member/logout">로그아웃</a></li>
-            <li><a href="/">메인 홈</a></li>
+            <li><a href="/booktopia/member/logout">로그아웃</a></li>
+            <li><a href="/booktopia/index">메인 홈</a></li>
             <li><a href="#">고객센터</a></li>
           </ul>
         </div>
@@ -39,9 +41,9 @@
             <li>
               <h3>주요기능</h3>
               <ul>
-                <li><a href="/admin/goods">상품관리</a></li>
-                <li><a href="/admin/add">주문관리</a></li>
-                <li><a href="/admin/member">회원관리</a></li>
+                <li><a href="${ctxPath }/admin/goods">상품관리</a></li>
+                <li><a href="${ctxPath }/admin/add">주문관리</a></li>
+                <li><a href="${ctxPath }/admin/member">회원관리</a></li>
                 <li><a href="#">배송관리</a></li>
                 <li><a href="#">게시판관리</a></li>
               </ul>
