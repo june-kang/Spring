@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="fr.mapper.board">
+	
+	
+	<insert id="insertCommuBoard" parameterType="kr.co.fridgeideas.vo.BoardVO" useGeneratedKeys="true" keyProperty="seq">
+		<![CDATA[
+			INSERT INTO `FR_BOARD` SET
+			title=#{title},
+			content=#{content},
+			file=#{file},
+			uid=#{uid},
+			regip=#{regip},
+			rdate=NOW();
+		]]>
+		
+	</insert>
+	
+	<insert id="insertImage" parameterType="kr.co.fridgeideas.vo.ImageVO" useGeneratedKeys="true" keyProperty="seq">
+		<![CDATA[
+			INSERT INTO `FR_IMAGE` SET
+			fileName=#{fileName},
+			reg_id=#{reg_id},
+			fileType=#{fileType},
+		]]>	
+		<if test='fileType=="community"'>
+		<![CDATA[
+			commu_id=#{commu_id},
+		]]>
+		</if>
+		<if test='fileType=="recipe"'>
+		<![CDATA[
+			recipe_id=#{recipe_id},
+		]]>
+		</if>
+		<![CDATA[
+			credate=NOW();
+		]]>		
+	</insert>
+	
+	<select id="selectCommuList" resultType="kr.co.fridgeideas.vo.BoardVO">
+		<![CDATA[
+			SELECT * FROM `FR_BOARD`;
+		]]>
+	</select>
+
+</mapper>

@@ -1,5 +1,17 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<script>
+		
+var result = "${result}";
+
+$(function(){
+	if(result == 'fail'){
+		$('#loginLayout').show();
+		$('.loginResult').css({'color':'red','font-size':'11px'}).text('아이디 비밀번호를 잘못입력하셨습니다.');
+	}
+});
+</script>
+
       <div id="loginLayout">
         <div class="login">
           <p>
@@ -7,7 +19,7 @@
             <span>Login</span>
           </p>
           <div class="log_form">
-            <form action="#" method="post">
+            <form action="${ctxPath }/member/login" method="post">
               <table>
                 <tr>
                   <td><img src="${ctxPath }/img/id_img.jpg" alt="id" /></td>
@@ -20,6 +32,7 @@
               </table>
               <input type="submit" value="Login" class="log_but">
             </form>
+            <span class="loginResult"></span>
           </div>
           <div class="notyet">
             <span>아직 레시피아이디어스의 회원이 아니세요?<br />

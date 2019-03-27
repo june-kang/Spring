@@ -10,11 +10,11 @@
   </nav>
   <div class="commu_write">
     <div class="write_form">
-      <form action="#" method="post">
+      <form action="#" method="post" enctype="multipart/form-data">
 		<table>
 			<tr>
 				<td>Title</td>
-				<td><input type="text" name="subject" placeholder="제목을 입력하세요." required /></td>
+				<td><input type="text" name="title" placeholder="제목을 입력하세요." required /></td>
 			</tr>
 			<tr>
 				<td>Content</td>
@@ -25,7 +25,7 @@
 			<tr>
 				<td>Upload</td>
 				<td>
-					<input type="file" name="file" />
+					<input type="file" name="fname" />
 				</td>
 			</tr>
 		</table>

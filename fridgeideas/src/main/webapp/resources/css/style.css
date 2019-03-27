@@ -110,6 +110,11 @@ a {
 	top: 8px;
 	right: -90px;
 }
+#loginLayout .loginResult{   
+	position: absolute;
+    bottom: 68px;
+    left: 125px;
+}
 
 .login>.notyet, .forgetyourinfo {
 	border-top: 1px solid lightgrey;
@@ -500,12 +505,14 @@ footer>.footer_section>.more_fridgeideas>p:nth-child(2) {
 	background-image: url('../img/bt_cancel.jpg');
 	width: 127px;
 	height: 40px;
+	cursor: pointer;
 }
 
 #terms input[class="next"] {
 	background-image: url('../img/bt_next.jpg');
 	width: 127px;
 	height: 40px;
+	cursor: pointer;
 }
 
 /*�쉶�썝媛��엯*/
@@ -603,9 +610,10 @@ footer>.footer_section>.more_fridgeideas>p:nth-child(2) {
 	width: 127px;
 	height: 40px;
 	background-image: url('../img/bt_cancel.jpg');
+	cursor: pointer;
 }
 
-.register .join {
+.register .reg_submit {
 	width: 127px;
 	height: 40px;
 	background-image: url('../img/bt_next.jpg');
