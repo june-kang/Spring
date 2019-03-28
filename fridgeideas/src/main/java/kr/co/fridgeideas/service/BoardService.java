@@ -15,5 +15,9 @@ public interface BoardService {
 	public void fileUpload(HttpServletRequest req, MultipartFile file, int seq);
 	public int fileWrite(ImageVO ivo);
 	public List<BoardVO> commuList();
-
+	public BoardVO view(int seq);
+	public void updateView(int seq);
+	public List<ImageVO> commuBoardImage(int seq);
+	public String commentWrite(BoardVO boardVO);
+	public void updateCommentCount(int parent);
 }

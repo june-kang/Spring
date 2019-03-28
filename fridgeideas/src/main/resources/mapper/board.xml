@@ -40,8 +40,46 @@
 	
 	<select id="selectCommuList" resultType="kr.co.fridgeideas.vo.BoardVO">
 		<![CDATA[
-			SELECT * FROM `FR_BOARD`;
+			SELECT b.*, m.nick FROM `FR_BOARD` AS b, `FR_MEMBER` AS m
+			WHERE b.uid = m.uid AND cate='community' AND parent=0
+			ORDER BY seq DESC;
 		]]>
 	</select>
+	
+	<select id="selectCommuBoard" resultType="kr.co.fridgeideas.vo.BoardVO">
+		<![CDATA[
+			SELECT b.*, m.nick FROM `FR_BOARD` AS b, `FR_MEMBER` AS m
+			WHERE b.uid = m.uid AND b.seq=#{seq};
+		]]>
+	</select>
+	
+	<update id="updateBoardView">
+		<![CDATA[
+			UPDATE `FR_BOARD` SET view=view+1 WHERE seq=#{seq};
+		]]>
+	</update>
+	
+	<select id="selectCommuImage" resultType="kr.co.fridgeideas.vo.ImageVO">
+		<![CDATA[
+			SELECT * FROM `FR_IMAGE` WHERE fileType='community' AND commu_id=#{seq};
+		]]>
+	</select>
+	
+	<insert id="insertComment" parameterType="kr.co.fridgeideas.vo.BoardVO" useGeneratedKeys="true" keyProperty="rdate">
+		<![CDATA[
+			INSERT INTO `FR_BOARD` SET
+			parent=#{parent},
+			cate='community',
+			content=#{content},
+			uid=#{uid},
+			regip=#{regip},
+			rdate=NOW();
+		]]>
+	</insert>
+	<update id="updateCommentCount">
+		<![CDATA[
+			UPDATE `FR_BOARD` SET comment=comment+1 WHERE seq=#{parent};
+		]]>
+	</update>
 
 </mapper>

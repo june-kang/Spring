@@ -1,6 +1,9 @@
 package kr.co.fridgeideas.controller;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -9,8 +12,10 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import kr.co.fridgeideas.service.BoardService;
@@ -34,6 +39,7 @@ public class BoardController {
 		
 		List<BoardVO> list = service.commuList();
 		model.addAttribute("list", list);
+		
 		return "/community/commu_list";
 	}
 	
@@ -78,12 +84,49 @@ public class BoardController {
 	
 	
 	@RequestMapping(value="/community/commu_view")
-	public String commuView() {
+	public String commuView(Model model, int seq, HttpSession sess) {
+		
+		MemberVO memberVO = (MemberVO) sess.getAttribute("memberVO");
+		String uid = memberVO.getUid();
+		
+		BoardVO boardVO = service.view(seq);
+		List<ImageVO> list = new ArrayList<>();
+		
+		if(!boardVO.getUid().equals(uid)) {
+			service.updateView(seq);
+		}
+		
+		if(boardVO.getFile()==1) {
+			list = service.commuBoardImage(seq);
+		}
+		
+		model.addAttribute("boardVO", boardVO);
+		model.addAttribute("list", list);
+		
 		return "/community/commu_view";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/community/commentWrite", method=RequestMethod.POST)
+	public Map<String, String> commentWrite(BoardVO vo, HttpServletRequest req){
+		
+		vo.setRegip(req.getRemoteAddr());
+		String rdate = service.commentWrite(vo);
+		service.updateCommentCount(vo.getParent());
+		
+		
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("nick", vo.getNick());
+		map.put("rdate", rdate);
+		map.put("content", vo.getContent());
+		
+		return map;
 	}
 	
 	@RequestMapping(value="/notice/notice")
 	public String noticeList() {
 		return "/notice/notice";
 	}
+	
+	
 }

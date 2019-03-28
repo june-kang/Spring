@@ -57,5 +57,34 @@ public class BoardServiceImpl implements BoardService {
 		return dao.commuList();
 	}
 
+	@Override
+	public BoardVO view(int seq) {
+		return dao.view(seq);
+	}
+	
+	@Override
+	public String commentWrite(BoardVO boardVO) {
+		return dao.commentWrite(boardVO);
+	}
+	
+	@Override
+	public void updateCommentCount(int parent) {
+		dao.updateCommentCount(parent);
+	}
+
+	@Override
+	public void updateView(int seq) {
+		dao.updateView(seq);
+	}
+
+	@Override
+	public List<ImageVO> commuBoardImage(int seq) {
+		return dao.commuBoardImage(seq);
+	}
+
+	
+
+	
+
 
 }

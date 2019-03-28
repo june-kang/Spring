@@ -29,5 +29,26 @@ public class BoardDAO {
 	public List<BoardVO> commuList(){
 		return mybatis.selectList("fr.mapper.board.selectCommuList");
 	}
+	
+	public BoardVO view(int seq) {
+		return mybatis.selectOne("fr.mapper.board.selectCommuBoard", seq);
+	}
+	
+	public String commentWrite(BoardVO boardVO) {
+		mybatis.insert("fr.mapper.board.insertComment", boardVO);
+		return boardVO.getRdate();
+	}
+	
+	public void updateCommentCount(int parent) {
+		mybatis.update("fr.mapper.board.updateCommentCount", parent);
+	}
+	
+	public void updateView(int seq) {
+		mybatis.update("fr.mapper.board.updateBoardView", seq);
+	}
+	
+	public List<ImageVO> commuBoardImage(int seq){
+		return mybatis.selectList("fr.mapper.board.selectCommuImage", seq);
+	}
 
 }

@@ -15,16 +15,16 @@
         <a href="${ctxPath }/community/commu_write"><input type="button" name="writeBtn" value="write" /></a>
       </div>
       <div class="board_list">
-      <c:forEach var="vo" items="list">
+      <c:forEach var="vo" items="${list}">
         <div>
           <a href="${ctxPath }/community/commu_view?seq=${vo.seq}"><p>${vo.title }</p></a>
-          <p>닉네임입니다.</p>
-          <p>${vo.rdate }</p>
+          <p>${vo.nick }</p>
+          <p>${vo.rdate.substring(2,10) }</p>
           <p>${vo.comment }<br />answers</p>
-          <p>1<br />view</p>
-          <p>0<br />hit</p>
+          <p>${vo.view }<br />view</p>
+          <p>${vo.hit }<br />hit</p>
         </div>
-        </c:forEach>
+       </c:forEach>
       </div>
       <div class="paging">
 		<span>

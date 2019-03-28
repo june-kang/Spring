@@ -1201,14 +1201,14 @@ footer>.footer_section>.more_fridgeideas>p:nth-child(2) {
 	height: auto;
 }
 
-.comment_list>.comment {
+.comments>.comment {
 	width: 100%;
 	height: auto;
 	box-sizing: border-box;
 	padding: 20px;
 }
 
-.comment_list>.comment>div {
+.comments>.comment>div {
 	position: relative;
 	width: 900px;
 	height: auto;
@@ -1216,20 +1216,26 @@ footer>.footer_section>.more_fridgeideas>p:nth-child(2) {
 	padding: 20px;
 }
 
-.comment_list>.comment>div>p:nth-child(1) {
+.comments>.comment textarea {
 	width: 100%;
 	padding-bottom: 10px;
+	resize: none;
+	background: transparent;
+	border: 0;
 }
 
-.comment_list>.comment>div>p:nth-child(2) {
+.comments>.comment>div>p:nth-child(2) {
 	position: absolute;
 	right: 70px;
 	margin-right: 5px;
 }
 
-.comment_list>.comment>div>p:nth-child(3) {
+.comments>.comment>div>p:nth-child(3) {
 	position: absolute;
 	right: 10px;
+}
+.comments > .empty {
+	padding: 10px 23px;
 }
 
 .comment_write {

@@ -12,10 +12,15 @@ public class BoardVO {
 	private String content;
 	private int file;
 	private int hit;
+	private int view;
 	private String uid;
 	private String regip;
 	private String rdate;
 	private MultipartFile fname;
+	
+	
+	private String nick;
+
 	
 	
 	public int getSeq() {
@@ -66,6 +71,12 @@ public class BoardVO {
 	public void setHit(int hit) {
 		this.hit = hit;
 	}
+	public int getView() {
+		return view;
+	}
+	public void setView(int view) {
+		this.view = view;
+	}
 	public String getUid() {
 		return uid;
 	}
@@ -90,6 +101,13 @@ public class BoardVO {
 	}
 	public void setFname(MultipartFile fname) {
 		this.fname = fname;
+	}
+	
+	public String getNick() {
+		return nick;
+	}
+	public void setNick(String nick) {
+		this.nick = nick;
 	}
 	
 	
