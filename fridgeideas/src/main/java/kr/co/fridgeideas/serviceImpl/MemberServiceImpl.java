@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import kr.co.fridgeideas.dao.MemberDAO;
 import kr.co.fridgeideas.service.MemberService;
 import kr.co.fridgeideas.vo.MemberVO;
+import kr.co.fridgeideas.vo.RecipeVO;
 import kr.co.fridgeideas.vo.TermsVO;
 
 @Service
@@ -48,6 +49,11 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public int emailCheck(String email) {
 		return dao.emailCheck(email);
+	}
+
+	@Override
+	public void recipeWrite(RecipeVO recipeVO) {
+		dao.recipeWrite(recipeVO);
 	}
 	
 }

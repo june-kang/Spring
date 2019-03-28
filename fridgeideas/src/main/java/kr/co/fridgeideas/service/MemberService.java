@@ -1,6 +1,7 @@
 package kr.co.fridgeideas.service;
 
 import kr.co.fridgeideas.vo.MemberVO;
+import kr.co.fridgeideas.vo.RecipeVO;
 import kr.co.fridgeideas.vo.TermsVO;
 
 public interface MemberService {
@@ -12,4 +13,5 @@ public interface MemberService {
 	public int nickCheck(String nick);
 	public int hpCheck(String hp);
 	public int emailCheck(String email);
+	public void recipeWrite(RecipeVO recipeVO);
 }

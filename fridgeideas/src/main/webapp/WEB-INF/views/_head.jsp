@@ -14,7 +14,7 @@
     <div id="wrapper">
       <header>
         <p>
-          <a href="${ctxPath }/member/mywrite"><img src="${ctxPath }/img/writing.png" title="글쓰기" alt="글쓰기" /></a>
+          <a href="${ctxPath }/member/myrecipe"><img src="${ctxPath }/img/writing.png" title="글쓰기" alt="글쓰기" /></a>
           <c:if test="${memberVO == null }">
           <a href="${ctxPath }/member/terms"><img src="${ctxPath }/img/register.png" title="회원가입" alt="회원가입" /></a>
           <a href="#"><img id="login_btn" src="${ctxPath }/img/login.png" title="로그인" alt="로그인" /></a>

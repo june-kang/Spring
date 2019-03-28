@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import kr.co.fridgeideas.vo.MemberVO;
+import kr.co.fridgeideas.vo.RecipeVO;
 import kr.co.fridgeideas.vo.TermsVO;
 
 @Repository
@@ -38,5 +39,9 @@ public class MemberDAO {
 	}
 	public int emailCheck(String email) {
 		return mybatis.selectOne("fr.mapper.member.selectMemberCountEmail", email);
+	}
+	
+	public void recipeWrite(RecipeVO recipeVO) {
+		mybatis.insert("fr.mapper.member.insertRecipe", recipeVO);
 	}
 }

@@ -1,6 +1,7 @@
 package kr.co.fridgeideas.serviceImpl;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -68,6 +69,12 @@ public class BoardServiceImpl implements BoardService {
 	}
 	
 	@Override
+	public List<BoardVO> commentList(int parent) {
+		return dao.commentList(parent);
+	}
+
+	
+	@Override
 	public void updateCommentCount(int parent) {
 		dao.updateCommentCount(parent);
 	}
@@ -82,6 +89,7 @@ public class BoardServiceImpl implements BoardService {
 		return dao.commuBoardImage(seq);
 	}
 
+	
 	
 
 	

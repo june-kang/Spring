@@ -51,6 +51,13 @@
 			SELECT COUNT(*) FROM `FR_MEMBER` WHERE email=#{email};
 		]]>
 	</select>
+	
+	<insert id="insertRecipe">
+		<![CDATA[
+			INSERT INTO `FR_RECIPE` SET
+			
+		]]>
+	</insert>
 
 
 

@@ -41,7 +41,7 @@
 	<h3>댓글쓰기</h3>
 	<div>
 		<form action="#" method="post">
-		<input type="hidden" name="parent" value="${boardVO.seq }" />
+		<input type="hidden" name="parent" id="parent" value="${boardVO.seq }" />
 		<input type="hidden" name="uid" value="${sessionScope.memberVO.uid }" />
 		<input type="hidden" name="nick" value="${memberVO.nick }" />
 			<textarea name="comment" rows="5"></textarea>
@@ -54,6 +54,54 @@
   </section>
   <script>
   	$(function(){
+  		
+  		var comments = $('.comments');
+		var comment = $('.comments>.comment');
+		var empty = $('.empty');
+		var parent = $('#parent').val();
+
+		console.log('here1');
+		
+  		$.ajax({
+  			url:'/fridgeideas/community/commentList?parent='+parent,
+  			type:'GET',
+  			dataType:'json',
+  			success:function(result){
+				if(result.length==0){
+					comment.remove();
+				} else{
+					empty.remove();
+				}
+				
+				for(var i in result){
+					
+					if(i>0){
+						var commentCloned = comment.clone();
+						commentCloned.find('div > .nick').text(result[i].nick);
+						commentCloned.find('div > .date').text(result[i].rdate.toString().substring(2,10));
+						commentCloned.find('textarea').text(result[i].content);
+						
+						comments.append(commentCloned);
+					} else{
+						comment.find('div > .nick').text(result[i].nick);
+						comment.find('div > .date').text(result[i].rdate.toString().substring(2,10));
+						comment.find('textarea').text(result[i].content);
+					}
+				}
+  				
+  			}
+  		
+  			
+  			
+  		});
+  		
+  		
+  		
+  		
+  		
+  		
+  		
+  		
   		var btnComment = $('.comment_write .submit');
   		btnComment.click(function(){
   			
@@ -64,29 +112,23 @@
   			
   			var json = {"parent":parent, "uid":uid, "nick":nick, "content":content};
 
-  			
-			console.log('here1');
-			
   			$.ajax({
-  				url:'${ctxPath}/community/commentWrite',
+  				url:'/fridgeideas/community/commentWrite',
   				type:'POST',
   				dataType:'json',
   				data:json,
   				success:function(result){
   					
-  					var comments = $('.comments');
-  					var comment = $('.comments>.comment');
-  					var empty = $('.empty')
+  					if(empty.is(":visible")==true){
+  						empty.hide();
+  					}
   					
-  					empty.hide();
   					var commentCloned = comment.clone();
   					commentCloned.find('textarea').text(result.content);
   					commentCloned.find('div > .nick').text(result.nick);
   					commentCloned.find('div > .date').text(result.date);
   					
-  					comments.append(commentCloned);
-  					alert('성공!');
-  					
+  					comments.append(commentCloned);  					
   				}
   				  				
   			});

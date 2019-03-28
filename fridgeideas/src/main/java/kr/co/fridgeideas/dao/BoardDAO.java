@@ -1,5 +1,6 @@
 package kr.co.fridgeideas.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -37,6 +38,10 @@ public class BoardDAO {
 	public String commentWrite(BoardVO boardVO) {
 		mybatis.insert("fr.mapper.board.insertComment", boardVO);
 		return boardVO.getRdate();
+	}
+	
+	public List<BoardVO> commentList(int parent){
+		return mybatis.selectList("fr.mapper.board.selectCommentList", parent);
 	}
 	
 	public void updateCommentCount(int parent) {

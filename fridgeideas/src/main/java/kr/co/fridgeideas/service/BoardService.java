@@ -19,5 +19,6 @@ public interface BoardService {
 	public void updateView(int seq);
 	public List<ImageVO> commuBoardImage(int seq);
 	public String commentWrite(BoardVO boardVO);
+	public List<BoardVO> commentList(int parent);
 	public void updateCommentCount(int parent);
 }

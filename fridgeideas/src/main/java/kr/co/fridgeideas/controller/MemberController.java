@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.fridgeideas.service.MemberService;
 import kr.co.fridgeideas.vo.MemberVO;
+import kr.co.fridgeideas.vo.RecipeVO;
 import kr.co.fridgeideas.vo.TermsVO;
 
 @Controller
@@ -74,6 +75,22 @@ public class MemberController {
 	@RequestMapping(value="/member/mypage")
 	public String mypage() {
 		return "/member/mypage";
+	}
+	
+	@RequestMapping(value="/member/myrecipe", method=RequestMethod.GET)
+	public String myrecipe() {
+		return "/member/myrecipe";
+	}
+	
+	@RequestMapping(value="/member/myrecipe", method=RequestMethod.POST)
+	public String myrecipe(RecipeVO recipeVO, HttpSession sess, HttpServletRequest req) {
+		MemberVO memberVO = (MemberVO) sess.getAttribute("memberVO");
+		recipeVO.setUid(memberVO.getUid());
+		recipeVO.setNick(memberVO.getNick());
+		recipeVO.setRegip(req.getRemoteAddr());
+		
+		service.recipeWrite(recipeVO);
+		return "redirect:/index";
 	}
 	
 	@ResponseBody
