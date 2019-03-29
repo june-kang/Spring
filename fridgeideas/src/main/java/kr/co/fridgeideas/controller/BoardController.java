@@ -7,6 +7,7 @@ import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -15,11 +16,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import kr.co.fridgeideas.service.BoardService;
 import kr.co.fridgeideas.vo.BoardVO;
 import kr.co.fridgeideas.vo.ImageVO;
 import kr.co.fridgeideas.vo.MemberVO;
+import kr.co.fridgeideas.vo.RecipeVO;
 
 @Controller
 public class BoardController {
@@ -49,10 +52,7 @@ public class BoardController {
 	@RequestMapping(value="/community/commu_write", method=RequestMethod.POST)
 	public String commuWrite(BoardVO vo, HttpServletRequest req, HttpSession sess) {
 		
-		MemberVO memberVO = (MemberVO)sess.getAttribute("memberVO");
-		String reg_id = memberVO.getUid();
 		vo.setRegip(req.getRemoteAddr());
-		vo.setUid(reg_id);
 		
 		MultipartFile file = vo.getFname();
 		
@@ -65,11 +65,11 @@ public class BoardController {
 			ivo.setCommu_id(commu_id);
 			ivo.setFileType("community");
 			ivo.setFileName(fileName);
-			ivo.setReg_id(reg_id);
+			ivo.setReg_id(vo.getUid());
 			
-			int seq = service.fileWrite(ivo); // 이미지 테이블의 seq
+			service.fileWrite(ivo); // 이미지 테이블의 seq
 			
-			service.fileUpload(req, file, seq);
+			service.fileUpload(req, file, commu_id);
 			
 		} else {
 			vo.setFile(0);
@@ -136,6 +136,47 @@ public class BoardController {
 	@RequestMapping(value="/notice/notice")
 	public String noticeList() {
 		return "/notice/notice";
+	}
+	
+	@RequestMapping(value="/member/myrecipe", method=RequestMethod.GET)
+	public String myrecipe() {
+		return "/member/myrecipe";
+	}
+	
+	@RequestMapping(value="/member/myrecipe", method=RequestMethod.POST)
+	public String myrecipe(RecipeVO recipeVO, HttpServletRequest req, HttpServletResponse resp) {
+		
+		recipeVO.setRegip(req.getRemoteAddr());
+		HashMap<String, MultipartFile> map = new HashMap<>();
+				
+		MultipartHttpServletRequest mhsq = (MultipartHttpServletRequest) req; // 다중 파일 업로드
+		List<MultipartFile> files = mhsq.getFiles("fname");
+		
+		if(!files.isEmpty()) {
+			recipeVO.setFile(1);
+			int recipe_id = service.recipeWrite(recipeVO);
+			
+			ImageVO ivo = new ImageVO();
+			ivo.setRecipe_id(recipe_id);
+			ivo.setFileType("recipe");
+			ivo.setReg_id(recipeVO.getUid());
+			
+			for(MultipartFile file : files) {
+				String fileName = file.getOriginalFilename();
+				if(fileName!="") {
+					ivo.setFileName(fileName);
+					service.fileWrite(ivo);
+					
+					map.put(fileName, file);
+				}
+				
+			}
+			service.multipleFileUpload(req, recipe_id, map);
+		}else {
+			recipeVO.setFile(0);
+			service.recipeWrite(recipeVO);
+		}
+		return "redirect:/index";
 	}
 	
 	

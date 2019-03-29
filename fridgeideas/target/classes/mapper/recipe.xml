@@ -1,3 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="fr.mapper.recipe"></mapper>
+<mapper namespace="fr.mapper.recipe">
+	
+	<select id="selectmainList" resultType="kr.co.fridgeideas.vo.RecipeVO">
+		SELECT r.*, i.fileName FROM `FR_RECIPE` AS r, `FR_IMAGE` AS i
+		WHERE r.seq = i.recipe_id
+		GROUP BY r.seq
+		LIMIT 12;
+	</select>
+	
+	<select id="selectRecipe" resultType="kr.co.fridgeideas.vo.RecipeVO">
+		SELECT * FROM `FR_RECIPE` WHERE seq=#{seq};
+	</select>
+	
+	<select id="selectRecipeImage" resultType="kr.co.fridgeideas.vo.RecipeVO">
+		SELECT * FROM `FR_IMAGE` WHERE recipe_id=#{seq}
+	</select>
+
+
+</mapper>

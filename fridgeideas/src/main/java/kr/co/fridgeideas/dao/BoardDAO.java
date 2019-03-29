@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import kr.co.fridgeideas.vo.BoardVO;
 import kr.co.fridgeideas.vo.ImageVO;
+import kr.co.fridgeideas.vo.RecipeVO;
 
 @Repository
 public class BoardDAO {
@@ -54,6 +55,11 @@ public class BoardDAO {
 	
 	public List<ImageVO> commuBoardImage(int seq){
 		return mybatis.selectList("fr.mapper.board.selectCommuImage", seq);
+	}
+	
+	public int recipeWrite(RecipeVO recipeVO) {
+		mybatis.insert("fr.mapper.board.insertRecipe", recipeVO);
+		return recipeVO.getSeq();
 	}
 
 }

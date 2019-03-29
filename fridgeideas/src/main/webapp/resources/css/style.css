@@ -1380,6 +1380,7 @@ font-family: fantasy;
   width: 400px;
   box-sizing: border-box;
 }
+
 .recipe_intro > .recipe_info > p:nth-child(1){
   padding: 3px;
   text-align: center;
@@ -1398,8 +1399,8 @@ font-family: fantasy;
   font-family:
 }
 .recipe_info > p > span:nth-child(3) { /*<br /> 때문에 자식 요소 순서가 한칸씩 건너뛰었음*/
-        font-size: 13px;
-        color: #f0ae2c;
+  font-size: 13px;
+  color: #f0ae2c;
 }
 .recipe_info > p > span:nth-child(5) {
   font-size: 14px;
@@ -1410,7 +1411,13 @@ font-family: fantasy;
   font-size: 12px;
 }
 .recipe_intro > .recipe_info > p:nth-child(2) {
-  padding: 7px;
+    padding-left: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 13;
+    -webkit-box-orient: vertical;
+    word-wrap: break-word;
 }
 .recipe_photo {
   position: relative;
@@ -1489,6 +1496,12 @@ font-family: fantasy;
   top: 5px;
   left: 27px;
 }
+
+.ingredients > div:nth-child(1) > ul   .time_m {
+	position: absolute;
+	left: 55px;
+}
+
 .ingredients > div:nth-child(2){
   width: 100%;
   height: auto;
@@ -1678,85 +1691,85 @@ input[name="more_reviews"]{
 }
       
 /*레시피 업로드 페이지*/
-#sub > #upload_recipe_banner{
-        background-image: url('../img/upload_recipe.jpg');
-}
-.recipe_upload {
-  width: 100%;
-  height: 1500px;
-  position: relative;
-}
-.recipe_upload > div:nth-child(1){
-  height: 40px;
-  border-bottom: 3px double green;
-  text-align: center;
-  font-size: 22px;
-  color: darkolivegreen;
-  font-weight: bold;
-  padding: 5px 0 3px;
-}
+ #sub > #upload_recipe_banner{
+   background-image: url('../img/upload_recipe.jpg');
+ }
+ .recipe_upload {
+   width: 100%;
+   height: 1640px;
+   position: relative;
+ }
+ .recipe_upload > div:nth-child(1){
+   height: 40px;
+   border-bottom: 3px double green;
+   text-align: center;
+   font-size: 22px;
+   color: darkolivegreen;
+   font-weight: bold;
+   padding: 5px 0 3px;
+ }
 
-.recipe_upload > .form_data{
-  width: 650px;
-  background-color: lightgrey;
-  position: absolute;
-  top: 0;
-  left: 500px;
-  margin-left: -325px;
-  height: 1390px;
-  margin-top: 70px;
-}
-.recipe_form > div {
-  position: relative;
-  padding: 5px;
-  margin-top: 5px;
-  margin-left: 35px;
-}
-.recipe_form > div > span {
-  font-family: 'Josefin Sans', sans-serif;
-  color: #333333;
-  display: block;
-  padding-bottom: 3px;
-}
-.recipe_form option {
-  font-family: 'Josefin Sans', sans-serif;
-  color: #333333;
-}
-.recipe_form input[type="text"]{
-  border: 0;
-  border-radius: 4px;
-  height: 20px;
-}
-.recipe_form textarea{
-  border: 0;
-  height: 60px;
-  width: 90%;
-  resize: none;
-  border-radius: 4px;
-}
-.recipe_form select{
-  border: 0;
-  border-radius: 4px;
-  height: 20px;
-}
-.recipe_form > div:nth-child(1) >input[name="recipe_name"] {
-  width: 300px;
-}
-.recipe_form > div:nth-child(5) > span {
-  display: inline;
-}
-.recipe_form > div:nth-child(5) > span:nth-child(1){
-  display:block;
-}
-.recipe_form > input[type="submit"] {
-  width: 100px;
- height: 35px;
-  background-color: darkolivegreen;
- font-size: 14px;
- color: white;
- font-weight: bold;
-  font-family: sans-serif;
-  position: absolute;
-  right: 20px;
-  bottom: 10px;
-}
+ .recipe_upload > .form_data{
+   width: 650px;
+   background-color: lightgrey;
+   position: absolute;
+   top: 0;
+   left: 500px;
+   margin-left: -325px;
+   height: 1550px;
+   margin-top: 70px;
+ }
+ .recipe_form > div {
+   position: relative;
+   padding: 5px;
+   margin-top: 5px;
+   margin-left: 35px;
+ }
+ .recipe_form > div > span {
+   font-family: 'Josefin Sans', sans-serif;
+   color: #333333;
+   display: block;
+   padding-bottom: 3px;
+ }
+ .recipe_form option {
+   font-family: 'Josefin Sans', sans-serif;
+   color: #333333;
+ }
+ .recipe_form input[type="text"]{
+   border: 0;
+   border-radius: 4px;
+   height: 20px;
+ }
+ .recipe_form textarea{
+   border: 0;
+   height: 60px;
+   width: 90%;
+   resize: none;
+   border-radius: 4px;
+ }
+ .recipe_form select{
+   border: 0;
+   border-radius: 4px;
+   height: 20px;
+ }
+ .recipe_form > div:nth-child(1) >input[name="recipe_name"] {
+   width: 300px;
+ }
+ .recipe_form > div:nth-child(6) > span {
+   display: inline;
+ }
+ .recipe_form > div:nth-child(6) > span:nth-child(1){
+   display:block;
+ }
+ .recipe_form > input[type="submit"] {
+   width: 100px;
+height: 35px;
+	background-color: darkolivegreen;
+	font-size: 14px;
+	color: white;
+	font-weight: bold;
+	font-family: sans-serif;
+   	position: absolute;
+   	right: 20px;
+   	bottom: 10px;
+ }

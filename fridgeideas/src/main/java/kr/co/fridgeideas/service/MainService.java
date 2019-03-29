@@ -1,5 +1,10 @@
 package kr.co.fridgeideas.service;
 
-public class MainService {
+import java.util.List;
 
+import kr.co.fridgeideas.vo.RecipeVO;
+
+public interface MainService {
+
+	public List<RecipeVO> mainRecipeList();
 }

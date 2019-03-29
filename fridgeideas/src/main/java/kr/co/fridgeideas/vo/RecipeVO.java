@@ -8,6 +8,7 @@ public class RecipeVO {
 	private String uid;
 	private String nick;
 	private String cate;
+	private String author_write;
 	private String cooking_level;
 	private String recipe_name;
 	private int cooking_time_h;
@@ -31,14 +32,11 @@ public class RecipeVO {
 	private String regip;
 	private String rdate;
 	private int file;
+	private MultipartFile fname;
 	
 	
-	private MultipartFile fname1;
-	private MultipartFile fname2;
-	private MultipartFile fname3;
-	private MultipartFile fname4;
-	private MultipartFile fname5;
 	
+	private String fileName;
 	
 	
 	public int getSeq() {
@@ -64,6 +62,12 @@ public class RecipeVO {
 	}
 	public void setCate(String cate) {
 		this.cate = cate;
+	}
+	public String getAuthor_write() {
+		return author_write;
+	}
+	public void setAuthor_write(String author_write) {
+		this.author_write = author_write;
 	}
 	public String getCooking_level() {
 		return cooking_level;
@@ -207,34 +211,21 @@ public class RecipeVO {
 	
 	
 	
-	public MultipartFile getFname1() {
-		return fname1;
+	public MultipartFile getFname() {
+		return fname;
 	}
-	public void setFname1(MultipartFile fname1) {
-		this.fname1 = fname1;
+	public void setFname(MultipartFile fname) {
+		this.fname = fname;
 	}
-	public MultipartFile getFname2() {
-		return fname2;
+	
+	
+	
+	
+	public String getFileName() {
+		return fileName;
 	}
-	public void setFname2(MultipartFile fname2) {
-		this.fname2 = fname2;
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
 	}
-	public MultipartFile getFname3() {
-		return fname3;
-	}
-	public void setFname3(MultipartFile fname3) {
-		this.fname3 = fname3;
-	}
-	public MultipartFile getFname4() {
-		return fname4;
-	}
-	public void setFname4(MultipartFile fname4) {
-		this.fname4 = fname4;
-	}
-	public MultipartFile getFname5() {
-		return fname5;
-	}
-	public void setFname5(MultipartFile fname5) {
-		this.fname5 = fname5;
-	}
+
 }

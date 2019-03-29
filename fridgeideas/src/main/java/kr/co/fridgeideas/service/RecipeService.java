@@ -1,5 +1,12 @@
 package kr.co.fridgeideas.service;
 
-public class RecipeService {
+import java.util.List;
 
+import kr.co.fridgeideas.vo.ImageVO;
+import kr.co.fridgeideas.vo.RecipeVO;
+
+public interface RecipeService {
+
+	public RecipeVO view(int seq);
+	public List<ImageVO> recipeImageList(int seq);
 }

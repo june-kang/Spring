@@ -41,7 +41,5 @@ public class MemberDAO {
 		return mybatis.selectOne("fr.mapper.member.selectMemberCountEmail", email);
 	}
 	
-	public void recipeWrite(RecipeVO recipeVO) {
-		mybatis.insert("fr.mapper.member.insertRecipe", recipeVO);
-	}
+	
 }

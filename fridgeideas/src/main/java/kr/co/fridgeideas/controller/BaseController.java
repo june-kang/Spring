@@ -4,6 +4,7 @@ import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.OutputStream;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,6 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import net.coobird.thumbnailator.Thumbnails;
 
 @Controller
 public class BaseController {
@@ -20,13 +23,20 @@ public class BaseController {
 	@RequestMapping(value="/image/download")
 	protected void download(String fileName,
 							int seq,
+							String fileType,
 							HttpServletRequest req,
 							HttpServletResponse resp) throws Exception {
 		
 		String imgPath = req.getSession().getServletContext().getRealPath("/")+"/resources/upload/";
-		
+		String filePath = "";
 		OutputStream out = resp.getOutputStream();
-		String filePath = imgPath + seq + "/" + fileName;
+		
+		if(fileType.equals("community")) {
+			filePath = imgPath + "community/" + seq + "/" + fileName;
+		} else if(fileType.equals("recipe")) {
+			filePath = imgPath + "recipe/" + seq + "/" + fileName;
+		}
+		
 		
 		File image = new File(filePath);
 		
@@ -52,6 +62,29 @@ public class BaseController {
 		}
 		bis.close();
 		bos.close();
+	}
+	
+	@RequestMapping(value="/image/thumbnail")
+	protected void thumbnails(String fileName,
+							  String recipe_id,
+							  HttpServletRequest req,
+							  HttpServletResponse resp) throws IOException {
+		
+		String imgPath = req.getSession().getServletContext().getRealPath("/")+"resources/upload/recipe/";
+		
+		OutputStream out = resp.getOutputStream();
+		String filePath = imgPath + recipe_id + "/" + fileName;
+		File image = new File(filePath);
+		
+		if(image.exists()) {
+			// 썸네일 크기 설정 및 형식 출력
+			Thumbnails.of(image).size(310,297).outputFormat("png").toOutputStream(out);
+			
+			byte[] buffer = new byte[1024*8];
+			out.write(buffer);
+			out.close();
+		}
+		
 	}
 
 }

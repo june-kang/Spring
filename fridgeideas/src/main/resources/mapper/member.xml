@@ -9,7 +9,6 @@
 	<insert id="insertMember">
 		<![CDATA[
 			INSERT INTO `FR_MEMBER` SET
-			seq=#{seq},
 			uid=#{uid},
 			pass=PASSWORD(#{pass}),
 			name=#{name},
@@ -52,12 +51,7 @@
 		]]>
 	</select>
 	
-	<insert id="insertRecipe">
-		<![CDATA[
-			INSERT INTO `FR_RECIPE` SET
-			
-		]]>
-	</insert>
+	
 
 
 

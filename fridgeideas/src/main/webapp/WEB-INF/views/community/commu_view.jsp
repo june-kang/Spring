@@ -16,7 +16,7 @@
     </div>
     <div class="content">
       <c:forEach var="ivo" items="${list }">
-      <img src="${ctxPath }/image/download?seq=${ivo.seq}&fileName=${ivo.fileName}" alt="이미지" />
+      <img src="${ctxPath }/image/download?seq=${ivo.commu_id}&fileName=${ivo.fileName}&fileType=${ivo.fileType}" alt="이미지" />
       </c:forEach>
       <div>
 	        ${boardVO.content}

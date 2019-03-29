@@ -1,5 +1,18 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../_head.jsp" %>
+<script>
+	$(function(){
+		var time_h = $('.time_h');
+		var time_m = $('.time_m');
+		
+		if(${recipeVO.cooking_time_h}==0){
+			time_h.hide();
+		} else if(${recipeVO.cooking_time_m}==0){
+			time_m.hide();
+		}
+		
+	});
+</script>
 <section id="sub">
   <div class="banner" id="recipe_banner"><span>Recipe</span></div>
   <nav>
@@ -9,13 +22,13 @@
   <div class="recipe_intro">
     <div class="recipe_info">
       <p>
-        <span>음식이름</span><br />
+        <span>${recipeVO.recipe_name }</span><br />
         <span>★★★★★</span><br />
-        <span>23 made it | 14 reviews | 12 clipped </span><br />
-        <span>Recipe by : 닉네임</span>
+        <span>${recipeVO.made} made it | ${recipeVO.review }reviews | ${recipeVO.clipped} clipped </span><br />
+        <span>Recipe by : ${recipeVO.nick} </span>
       </p>
       <p>
-        음식 설명입니다. 이 레시피에 관련된 간단한 일화나 설명을 소개해주세요
+        ${recipeVO.author_write }
       </p>
     </div>
     <div class="recipe_photo">
@@ -31,19 +44,15 @@
     <div>
       <span>Ingredients</span>
       <ul>
-      <li><img src="${ctxPath }/img/cooking_time.png" alt="요리시간"><span>40 m</span></li>
-      <li><img src="${ctxPath }/img/serving.png" alt="몇인분"><span>6 servings</span></li>
+      <li><img src="${ctxPath }/img/cooking_time.png" alt="요리시간"><span class="time_h">${recipeVO.cooking_time_h } h  </span><span class="time_m">${recipeVO.cooking_time_m } m</span></li>
+      <li><img src="${ctxPath }/img/serving.png" alt="몇인분"><span>${recipeVO.serving } servings</span></li>
       </ul>
     </div>
       <div>
         <ul>
-          <li><img src="${ctxPath }/img/mark.png" alt="mark" /><span>2 packages Oriental flavored ramen noodles</span></li>
-          <li><img src="${ctxPath }/img/mark.png" alt="mark" /><span>3eggs, beaten</span></li>
-          <li><img src="${ctxPath }/img/mark.png" alt="mark" /><span>vegetable oil</span></li>
-          <li><img src="${ctxPath }/img/mark.png" alt="mark" /><span>4 green onions, thinly sliced</span></li>
-          <li><img src="${ctxPath }/img/mark.png" alt="mark" /><span>1 small carrot, peeled and grated</span></li>
-          <li><img src="${ctxPath }/img/mark.png" alt="mark" /><span>1/2 cup green peas</span></li>
-          <li><img src="${ctxPath }/img/mark.png" alt="mark" /><span>1/4 cup red bell pepper minced</span></li>
+        <c:forEach var="source" items="${ingredList }">
+          <li><img src="${ctxPath }/img/mark.png" alt="mark" /><span>${source }</span></li>
+         </c:forEach>
         </ul>
     </div>
   </div>
@@ -52,21 +61,62 @@
       <span>Direction</span>
     </div>
     <ul>
+    <c:if test="${!empty recipeVO.direction1 }">
       <li>
         <img src="${ctxPath }/img/1.png" alt="1" />
-        Boil ramen noodles for 3 minutes, or until softened, without flavor packets. Reserve flavor packets. Drain noodles, and set aside.
+        ${recipeVO.direction1 }
       </li>
+    </c:if>
+    <c:if test="${!empty recipeVO.direction2 }">
       <li>
         <img src="${ctxPath }/img/2.png" alt="2" />
-        Heat 1 tablespoon oil in a small skillet. Scramble eggs in a bowl. Cook and stir in hot oil until firm. Set aside.
+        ${recipeVO.direction2 }
       </li>
+    </c:if>
+    <c:if test="${!empty recipeVO.direction3 }">
       <li>
         <img src="${ctxPath }/img/3.png" alt="3" />
-        In a separate skillet, heat 1 teaspoon of oil over medium heat. Cook and stir green onions in oil for 2 to 3 minutes, or until softened. Transfer to a separate dish, and set aside. Heat another teaspoon of cooking oil in the same skillet. Cook and stir the the carrots, peas, and bell peppers separately in the same manner, setting each aside when done.
+        ${recipeVO.direction3 }
       </li>
-      <li><img src="${ctxPath }/img/4.png" alt="4" /><span></span></li>
-      <li><img src="${ctxPath }/img/5.png" alt="5" /><span></span></li>
-      <li><img src="${ctxPath }/img/6.png" alt="6" /><span></span></li>
+    </c:if>
+    <c:if test="${!empty recipeVO.direction4 }">
+      <li>
+        <img src="${ctxPath }/img/4.png" alt="4" />
+        ${recipeVO.direction4 }
+      </li>
+    </c:if>
+    <c:if test="${!empty recipeVO.direction5 }">
+      <li>
+        <img src="${ctxPath }/img/5.png" alt="5" />
+        ${recipeVO.direction5 }
+      </li>
+    </c:if>
+    <c:if test="${!empty recipeVO.direction6 }">
+      <li>
+        <img src="${ctxPath }/img/6.png" alt="6" />
+        ${recipeVO.direction6 }
+      </li>
+    </c:if>
+    <c:if test="${!empty recipeVO.direction7 }">
+      <li>
+        <img src="${ctxPath }/img/7.png" alt="7" />
+        ${recipeVO.direction7 }
+      </li>
+    </c:if>
+    <c:if test="${!empty recipeVO.direction8 }">
+      <li>
+        <img src="${ctxPath }/img/8.png" alt="8" />
+        ${recipeVO.direction8 }
+      </li>
+    </c:if>
+    <c:if test="${!empty recipeVO.direction9 }">
+      <li>
+        <img src="${ctxPath }/img/9.png" alt="9" />
+        ${recipeVO.direction9 }
+      </li>
+    </c:if>
+      
+  
     </ul>
   </div>
   <div class="review_part">

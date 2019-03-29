@@ -10,7 +10,8 @@
   </nav>
   <div class="commu_write">
     <div class="write_form">
-      <form action="#" method="post" enctype="multipart/form-data">
+      <form action="${ctxPath }/community/commu_write" method="post" enctype="multipart/form-data">
+      <input type="hidden" name="uid" value="${memberVO.uid }" />
 		<table>
 			<tr>
 				<td>Title</td>

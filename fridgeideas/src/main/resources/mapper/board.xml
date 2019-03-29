@@ -16,7 +16,7 @@
 		
 	</insert>
 	
-	<insert id="insertImage" parameterType="kr.co.fridgeideas.vo.ImageVO" useGeneratedKeys="true" keyProperty="seq">
+	<insert id="insertImage" parameterType="kr.co.fridgeideas.vo.ImageVO">
 		<![CDATA[
 			INSERT INTO `FR_IMAGE` SET
 			fileName=#{fileName},
@@ -83,8 +83,38 @@
 	</update>
 	
 	<select id="selectCommentList" resultType="kr.co.fridgeideas.vo.BoardVO">
+	<![CDATA[
 		SELECT b.*, m.nick FROM `FR_BOARD` AS b, `FR_MEMBER` AS m 
 		WHERE b.uid = m.uid AND parent=#{parent} AND cate='community';
+	]]>
 	</select>
+	
+	<insert id="insertRecipe" parameterType="kr.co.fridgeideas.vo.RecipeVO" useGeneratedKeys="true" keyProperty="seq">
+		<![CDATA[
+			INSERT INTO `FR_RECIPE` SET
+			uid=#{uid},
+			nick=#{nick},
+			cate=#{cate},
+			author_write=#{author_write},
+			cooking_level=#{cooking_level},
+			recipe_name=#{recipe_name},
+			cooking_time_h=#{cooking_time_h},
+			cooking_time_m=#{cooking_time_m},
+			ingredients=#{ingredients},
+			serving=#{serving},
+			direction1=#{direction1},
+			direction2=#{direction2},
+			direction3=#{direction3},
+			direction4=#{direction4},
+			direction5=#{direction5},
+			direction6=#{direction6},
+			direction7=#{direction7},
+			direction8=#{direction8},
+			direction9=#{direction9},
+			regip=#{regip},
+			file=#{file},
+			rdate=NOW();
+		]]>
+	</insert>
 
 </mapper>

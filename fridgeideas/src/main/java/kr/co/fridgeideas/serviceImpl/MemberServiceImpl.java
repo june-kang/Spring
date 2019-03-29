@@ -51,9 +51,6 @@ public class MemberServiceImpl implements MemberService {
 		return dao.emailCheck(email);
 	}
 
-	@Override
-	public void recipeWrite(RecipeVO recipeVO) {
-		dao.recipeWrite(recipeVO);
-	}
+	
 	
 }

@@ -13,5 +13,5 @@ public interface MemberService {
 	public int nickCheck(String nick);
 	public int hpCheck(String hp);
 	public int emailCheck(String email);
-	public void recipeWrite(RecipeVO recipeVO);
+	
 }

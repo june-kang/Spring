@@ -1,8 +1,14 @@
 package kr.co.fridgeideas.serviceImpl;
 
 import java.io.File;
+import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.UUID;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -14,6 +20,7 @@ import kr.co.fridgeideas.dao.BoardDAO;
 import kr.co.fridgeideas.service.BoardService;
 import kr.co.fridgeideas.vo.BoardVO;
 import kr.co.fridgeideas.vo.ImageVO;
+import kr.co.fridgeideas.vo.RecipeVO;
 
 @Service
 public class BoardServiceImpl implements BoardService {
@@ -26,10 +33,10 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public void fileUpload(HttpServletRequest req, MultipartFile file, int seq) {
+	public void fileUpload(HttpServletRequest req, MultipartFile file, int commu_id) {
 		
 		String path = req.getSession().getServletContext().getRealPath("/");
-		path += "resources/upload/"+seq+"/";  // 파일을 저장할 경로
+		path += "resources/upload/community/"+commu_id+"/";  // 파일을 저장할 경로
 		String fileName = file.getOriginalFilename();
 		
 		try {
@@ -37,7 +44,7 @@ public class BoardServiceImpl implements BoardService {
 			File desti = new File(path+fileName);
 			
 			if(!dir.exists()) {
-				dir.mkdir();
+				dir.mkdirs();
 			}
 			
 			file.transferTo(desti);
@@ -46,6 +53,34 @@ public class BoardServiceImpl implements BoardService {
 			e.printStackTrace();
 		}
 		
+	}
+	
+	@Override
+	public void multipleFileUpload(HttpServletRequest req, int recipe_id, HashMap<String, MultipartFile> map) {
+		
+		String path = req.getSession().getServletContext().getRealPath("/");
+		path += "resources/upload/recipe/"+recipe_id+"/";
+		
+		Set<String> set = map.keySet();
+		Iterator<String> itr = set.iterator();
+		
+		while(itr.hasNext()) {
+			String fileName = itr.next();
+			MultipartFile file = map.get(fileName);
+			try {
+				File dir = new File(path);
+				File desti = new File(path+fileName);
+				
+				if(!dir.exists()) {
+					dir.mkdirs();
+				}
+				file.transferTo(desti);
+
+				
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
 	}
 
 	@Override
@@ -88,6 +123,13 @@ public class BoardServiceImpl implements BoardService {
 	public List<ImageVO> commuBoardImage(int seq) {
 		return dao.commuBoardImage(seq);
 	}
+	
+	@Override
+	public int recipeWrite(RecipeVO recipeVO) {
+		return dao.recipeWrite(recipeVO);
+	}
+
+	
 
 	
 	

@@ -9,9 +9,15 @@
     <div>Share Your Recipe</div>
     <div class="form_data">
       <form class="recipe_form" action="${ctxPath }/member/myrecipe" method="post" enctype="multipart/form-data">
+      <input type="hidden" name="uid" value="${memberVO.uid}" />
+      <input type="hidden" name="nick" value="${memberVO.nick }" />
         <div>
           <span>Recipe's Name*:</span>
           <input type="text" name="recipe_name" required />
+        </div>
+        <div>
+          <span>Recipe' Story*:</span>
+          <textarea name="author_write" rows="4" cols="80" required></textarea>
         </div>
         <div>
           <span>Cooking Level*:</span>
@@ -24,7 +30,7 @@
         <div>
           <span>Recipe's Category*:</span>
           <select class="cate" name="cate">
-            <option value="Breafast&Brunch">Breasfast&Brundch</option>
+            <option value="Breakfast&Brunch">Breakfast&Brunch</option>
             <option value="Dinner">Dinner</option>
             <option value="Holiday">Holiday</option>
             <option value="Vegan">Vegan</option>
@@ -66,43 +72,43 @@
         </div>
         <div>
           <span>Recipe's Direction2*:</span>
-          <textarea name="direction1" rows="4" cols="80"></textarea>
+          <textarea name="direction2" rows="4" cols="80"></textarea>
         </div>
         <div>
           <span>Recipe's Direction3*:</span>
-          <textarea name="direction1" rows="4" cols="80"></textarea>
+          <textarea name="direction3" rows="4" cols="80"></textarea>
         </div>
         <div>
           <span>Recipe's Direction4*:</span>
-          <textarea name="direction1" rows="4" cols="80"></textarea>
+          <textarea name="direction4" rows="4" cols="80"></textarea>
         </div>
         <div>
           <span>Recipe's Direction5*:</span>
-          <textarea name="direction1" rows="4" cols="80"></textarea>
+          <textarea name="direction5" rows="4" cols="80"></textarea>
         </div>
         <div>
           <span>Recipe's Direction6*:</span>
-          <textarea name="direction1" rows="4" cols="80"></textarea>
+          <textarea name="direction6" rows="4" cols="80"></textarea>
         </div>
         <div>
           <span>Recipe's Direction7*:</span>
-          <textarea name="direction1" rows="4" cols="80"></textarea>
+          <textarea name="direction7" rows="4" cols="80"></textarea>
         </div>
         <div>
           <span>Recipe's Direction8*:</span>
-          <textarea name="direction1" rows="4" cols="80"></textarea>
+          <textarea name="direction8" rows="4" cols="80"></textarea>
         </div>
         <div>
           <span>Recipe's Direction9*:</span>
-          <textarea name="direction1" rows="4" cols="80"></textarea>
+          <textarea name="direction9" rows="4" cols="80"></textarea>
         </div>
         <div>
           <span>Image File*:</span>
-          <input type="file" name="fname1" />
-          <input type="file" name="fname2" />
-          <input type="file" name="fname3" />
-          <input type="file" name="fname4" />
-          <input type="file" name="fname5" />
+          <input type="file" name="fname" />
+          <input type="file" name="fname" />
+          <input type="file" name="fname" />
+          <input type="file" name="fname" />
+          <input type="file" name="fname" />
         </div>
         <input type="submit" name="submit" value="Thank you!" />
       </form>
