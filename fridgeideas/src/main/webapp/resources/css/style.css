@@ -283,14 +283,13 @@ article {
 	height: 400px;
 	box-sizing: border-box;
 	position: relative;
-	border: 1px solid orange;
+	border: 1px solid darkgrey;
 }
 
 article>.img_container {
 	box-sizing: border-box;
 	width: 100%;
 	height: 297px;
-	box-sizing: border-box;
 	position: absolute;
 }
 
@@ -1374,11 +1373,13 @@ font-family: fantasy;
 .recipe_intro {
   width: 100%;
   height: 300px;
+  position: relative;
 }
 .recipe_intro > .recipe_info {
   height: 100%;
   width: 400px;
   box-sizing: border-box;
+  display: inline-block;
 }
 
 .recipe_intro > .recipe_info > p:nth-child(1){
@@ -1420,7 +1421,10 @@ font-family: fantasy;
     word-wrap: break-word;
 }
 .recipe_photo {
-  position: relative;
+    display: inline-block;
+    width: 600px;
+    height: 100%;
+    position: absolute;
 }
 .recipe_intro > .recipe_photo > ul {
   position: absolute;

@@ -1,15 +1,109 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../_head.jsp" %>
+<style>
+#gallery > #thumbnail {
+	height: 265px;
+    width: 117px;
+	position: relative;	
+	padding-top: 18px;
+}
+#gallery > #thumbnail > .img_list{
+	width: 115px;
+	height: 240px;
+	position: absolute;
+	overflow: hidden;
+}
+#gallery > #thumbnail >.img_list > ul  {
+	height: 240px;
+    width: 115px;
+    position: absolute;
+    
+}
+#gallery > #thumbnail > .up, .down {
+	display: inline-block;
+	width: 115px;
+	height: 18px;
+	background-color: #f0ae2c;
+	text-align: center;
+	font-size: 15px;
+	cursor: pointer;
+	position: absolute;
+}
+#gallery > #thumbnail > .up{top: 0;}
+#gallery > #thumbnail > .down{bottom: 0;}
+
+
+#gallery > #thumbnail >.img_list > ul > li{
+	height: 80px;
+	width: 100%;
+    text-align: center;
+    cursor: pointer;
+}
+
+#gallery > #image {
+    width: 480px;
+    height: 258px;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+#gallery > #image > p{
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+#gallery > #image img{
+	width: 480px;
+	height: 258px;
+}
+</style>
 <script>
 	$(function(){
-		var time_h = $('.time_h');
-		var time_m = $('.time_m');
 		
-		if(${recipeVO.cooking_time_h}==0){
-			time_h.hide();
-		} else if(${recipeVO.cooking_time_m}==0){
-			time_m.hide();
-		}
+		var thumbnail = $('.img_list');
+		var container = thumbnail.find('ul');
+		var thumb = container.find('li');
+		var image = $('#gallery #image > p');
+		
+		var current = 0;
+		var thumbListSize = 3; // 썸네일에 보이는 li 3개
+		var size = container.children().length; //li 전체갯수 
+		var up = $('.up');
+		var down = $('.down');
+		var containMoveHeight = thumb.height();
+		
+			if(size > 3){
+				down.on('click', function(){
+					if(current < size / thumbListSize + 1) current++;
+					var tl = containMoveHeight * current * -1;
+					container.stop().animate({top:tl});
+					console.log(current);
+					
+				});
+				
+				up.on('click', function(){
+					if(current > 0) current--;
+						
+					var tl = containMoveHeight * current * -1;
+					container.stop().animate({top:tl});
+					console.log(current);
+				});
+				
+			}
+			thumb.on('click', function(){
+				image.css('display', 'none');
+				var i = $(this).index();
+				image.eq(i).css('display', 'block');
+				
+			});
+			
+			
+		
+		
+	
+		
 		
 	});
 </script>
@@ -17,7 +111,7 @@
   <div class="banner" id="recipe_banner"><span>Recipe</span></div>
   <nav>
     <img src="${ctxPath }/img/tag.png" alt="tag" />
-    <span>Home > Recipe >  <strong>Beginner</strong></span>
+    <span>Home > Recipe >  <strong>${recipeVO.cate }</strong></span>
   </nav>
   <div class="recipe_intro">
     <div class="recipe_info">
@@ -32,11 +126,34 @@
       </p>
     </div>
     <div class="recipe_photo">
-
-      <ul>
-        <li><img src="${ctxPath }/img/i_made_it.png" alt="i made it" /><span>I Made It</span></li>
-        <li><img src="${ctxPath }/img/pre_scrap.png" alt="스크랩전" /><span>Scrap</span></li>
-        <li><img src="${ctxPath }/img/rating.png" alt="별점주기" /><span>Rating</span></li>
+    	<div id="gallery">
+			<div id="thumbnail">
+				<div class="up">
+					<span>▲</span>
+				</div>
+				<div class="img_list">
+					<ul>
+						<c:forEach var="item" items="${imageList }">
+							<li>
+								<img width="100px" height="78px" src="${ctxPath}/image/thumbnail?recipe_id=${recipeVO.seq}&fileName=${item.fileName}" alt="썸네일" />
+							</li>
+						</c:forEach>
+					</ul>
+				</div>
+				<div class="down">
+					<span>▼</span>
+				</div>
+			</div>
+			<div id="image">
+				<c:forEach var="item" items="${imageList }">
+				<p><img src="${ctxPath}/image/download?seq=${recipeVO.seq}&fileName=${item.fileName}&fileType=${item.fileType}" alt="이미지" /></p>
+				</c:forEach>
+			</div>
+		</div>
+      	<ul>
+        	<li><img src="${ctxPath }/img/i_made_it.png" alt="i_made_it" /><span>I Made It</span></li>
+        	<li><img src="${ctxPath }/img/pre_scrap.png" alt="스크랩전" /><span>Scrap</span></li>
+        	<li><img src="${ctxPath }/img/rating.png" alt="별점주기" /><span>Rating</span></li>
       </ul>
     </div>
   </div>

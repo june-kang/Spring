@@ -36,9 +36,7 @@ public class RecipeController {
 		
 		String source = recipeVO.getIngredients();
 		String[] ingredList = source.split(",");
-		
-		System.out.println("레시피 디렉션9 : "+recipeVO.getDirection9());
-		
+				
 		model.addAttribute("recipeVO", recipeVO);
 		model.addAttribute("imageList", imageList);
 		model.addAttribute("ingredList", ingredList);

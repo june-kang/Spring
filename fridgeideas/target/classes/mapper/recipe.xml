@@ -13,7 +13,7 @@
 		SELECT * FROM `FR_RECIPE` WHERE seq=#{seq};
 	</select>
 	
-	<select id="selectRecipeImage" resultType="kr.co.fridgeideas.vo.RecipeVO">
+	<select id="selectRecipeImage" resultType="kr.co.fridgeideas.vo.ImageVO">
 		SELECT * FROM `FR_IMAGE` WHERE recipe_id=#{seq}
 	</select>
 
