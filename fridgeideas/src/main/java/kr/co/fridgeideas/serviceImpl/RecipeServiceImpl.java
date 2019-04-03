@@ -31,6 +31,11 @@ public class RecipeServiceImpl implements RecipeService {
 	public List<RecipeVO> recipeSearch(String[] ingredList) {
 		return dao.recipeSearch(ingredList);
 	}
+
+	@Override
+	public List<RecipeVO> cateRecipeList(String cate) {
+		return dao.cateRecipeList(cate);
+	}
 	
 
 }

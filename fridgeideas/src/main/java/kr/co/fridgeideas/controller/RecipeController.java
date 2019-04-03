@@ -33,8 +33,10 @@ public class RecipeController {
 		
 	}
 	
-	@RequestMapping(value="/recipe/beginner")
-	public String recipeList() {
+	@RequestMapping(value="/recipe")
+	public String recipeList(String cate) {
+		
+		List<RecipeVO> list = service.cateRecipeList(cate);
 		return "/recipe/beginner";
 	}
 	

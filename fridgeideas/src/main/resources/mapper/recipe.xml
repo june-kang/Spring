@@ -23,17 +23,34 @@
 		]]>
 	</select>
 	
-	<select id="selectRecipeforIngredients" resultType="kr.co.fridgeideas.vo.RecipeVO">
+	<select id="selectRecipeForIngredients" resultType="kr.co.fridgeideas.vo.RecipeVO">
 		<![CDATA[
 			SELECT r.*, i.fileName
-			FROM `FR_RECIPE` AS r, `FR_IMAGE` AS i
-			WHERE r.seq = i.recipe_id 
-			GROUP BY r.seq
+			FROM `FR_RECIPE` AS r INNER JOIN `FR_IMAGE` AS i
+			ON r.seq = i.recipe_id 			
 		]]>
-			<foreach item="item" collection="array" open="AND" separator="OR">
+			<foreach item="item" collection="array" open="WHERE" separator="OR">
 				r.ingredients LIKE CONCAT('%', #{item},'%')
 			</foreach>
+			GROUP BY r.seq;
 			
+	</select>
+	
+	<select id="selectRecipeForCate" parameterType="String" resultType="kr.co.fridgeideas.vo.RecipeVO">
+		<![CDATA[
+			SELECT r.*, i.fileName
+			FROM `FR_RECIPE` AS r INNER JOIN `FR_IMAGE` AS i
+			ON r.seq = i.recipe_id
+		]]>
+		<choose>
+		<when test='value eq "Beginner".toString()'>
+			AND cooking_level=#{cate}
+		</when>
+		<when test='value != "Beginner".toString()'>
+			AND cate=#{cate}
+		</when>
+		</choose>
+		GROUP BY r.seq;
 	</select>
 
 

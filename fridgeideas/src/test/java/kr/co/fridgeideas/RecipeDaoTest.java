@@ -19,13 +19,23 @@ public class RecipeDaoTest {
 	@Inject
 	private RecipeDAO dao;
 	
-	@Test
+	
 	public void RecipeSearchTest() {
 		String[] ingredList = {"water", "oil"};
 		
 		List<RecipeVO> recipeList = dao.recipeSearch(ingredList);
 		for(RecipeVO a : recipeList) {
 			System.out.println(a.getIngredients());
+		}
+	}
+	
+	@Test
+	public void CateTest() {
+		String cate = "Beginner";
+		
+		List<RecipeVO> recipeList = dao.cateRecipeList(cate);
+		for(RecipeVO vo : recipeList) {
+			System.out.println(vo.getRecipe_name());
 		}
 	}
 

@@ -22,12 +22,12 @@
       <section id="sub">
         <div class="banner" id="recipe_banner"><span>Recipe</span></div>
         <div class="slider">
-          <div><a href="${ctxPath }/beginner"><img src="${ctxPath }/img/beginner.png" alt="beginner" /><span>Beginner</span></a></div>
-          <div><a href="${ctxPath }/breakfast"><img src="${ctxPath }/img/breakfast.png" alt="breakfast" /><span>Breakfast & Brunch</span></a></div>
-          <div><a href="${ctxPath }/dinner"><img src="${ctxPath }/img/dinner.png" alt="dinner" /><span>Dinner</span></a></div>
-          <div><a href="${ctxPath }/holiday"><img src="${ctxPath }/img/holiday.png" alt="holiday" /><span>Holiday</span></a></div>
-          <div><a href="${ctxPath }/vegan"><img src="${ctxPath }/img/vegan.png" alt="vegan" /><span>Vegan</span></a></div>
-          <div><a href="${ctxPath }/dessert"><img src="${ctxPath }/img/dessert.png" alt="dessert" /><span>Dessert</span></a></div>
+          <div><a href="${ctxPath }/recipe?cate=beginner"><img src="${ctxPath }/img/beginner.png" alt="beginner" /><span>Beginner</span></a></div>
+          <div><a href="${ctxPath }/recipe?cate=breakfast"><img src="${ctxPath }/img/breakfast.png" alt="breakfast" /><span>Breakfast & Brunch</span></a></div>
+          <div><a href="${ctxPath }/recipe?cate=dinner"><img src="${ctxPath }/img/dinner.png" alt="dinner" /><span>Dinner</span></a></div>
+          <div><a href="${ctxPath }/recipe?cate=holiday"><img src="${ctxPath }/img/holiday.png" alt="holiday" /><span>Holiday</span></a></div>
+          <div><a href="${ctxPath }/recipe?cate=vegan"><img src="${ctxPath }/img/vegan.png" alt="vegan" /><span>Vegan</span></a></div>
+          <div><a href="${ctxPath }/recipe?cate=dessert"><img src="${ctxPath }/img/dessert.png" alt="dessert" /><span>Dessert</span></a></div>
           <div><a href="./monthbest.html"><img src="${ctxPath }/img/monthbest.png" alt="monthbest" /><span>Recipe of the Month</span></a></div>
         </div>
         <nav>
