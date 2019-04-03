@@ -258,7 +258,7 @@ header>.gnb>li>a {
 	font-size: 14px;
 }
 
-.search input[type="button"] {
+.search input[name="searchbutton"] {
 	width: 62px;
 	height: 41px;
 	cursor: pointer;

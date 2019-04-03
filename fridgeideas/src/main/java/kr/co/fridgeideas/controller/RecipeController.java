@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import kr.co.fridgeideas.service.RecipeService;
 import kr.co.fridgeideas.vo.ImageVO;
@@ -18,9 +19,18 @@ public class RecipeController {
 	@Inject
 	private RecipeService service;
 	
-	@RequestMapping(value="/search/search")
-	public String search() {
-		return "/search/search";
+	@RequestMapping(value="/search")
+	public String search(Model model, String ingredients) {
+		
+		if(ingredients!=null) {
+			String[] ingredList = ingredients.split("\\s+"); // 한칸 이상의 공백 자르기
+			List<RecipeVO> list = service.recipeSearch(ingredList);
+			model.addAttribute("list", list);
+			return "/search/search";
+		} else {
+			return "/search/search";
+		}
+		
 	}
 	
 	@RequestMapping(value="/recipe/beginner")

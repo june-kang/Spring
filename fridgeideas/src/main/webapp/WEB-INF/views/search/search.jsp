@@ -31,20 +31,21 @@
     </form>
   </div>
   <div class="search_result">
-    <a href="#"><article>
+  
+  <c:forEach var="item" items="${list }">
+    <a href="${ctxPath }/recipe/recipe_view?seq=${item.seq}"><article>
       <div class="img_container">
-        <img class="main_image" src="${ctxPath }/img/notice.jpg" alt="스크랩전" />
-        <img class="heart" src="${ctxPath }/img/heart.png" alt="스크랩후" />
+        <img class="main_image" width="310px" height="297px" src="${ctxPath }/image/thumbnail?recipe_id=${item.seq}&fileName=${item.fileName}" alt="썸네일" />
+        <img class="heart" src="${ctxPath }/img/heart.png" alt="스크랩" />
       </div>
       <div class="img_info">
-        <p>음식이름</p>
+        <p>${item.recipe_name }</p>
         <p>★★★☆☆</p>
-        <p>음식정보입니다. 이 음식에 관련된 내용을 입력해주세요.음식정보입니다. 이 음식에 관련된 내용을 입력해주세요.음식정보입니다. 이 음식에 관련된 내용을 입력해주세요.음식정보입니다. 이 음식에 관련된 내용을 입력해주세요.</p>
-        <p>by 작성자닉네임</p>
+        <p>${item.author_write }</p>
+        <p>by ${item.nick }</p>
       </div>
     </article></a>
-    <a href="#"><article></article></a>
-    <a href="#"><article></article></a>
+    </c:forEach>
   </div>
 </div>
 </section>

@@ -17,11 +17,15 @@ public class RecipeDAO {
 	private SqlSessionTemplate mybatis;
 	
 	public RecipeVO view(int seq) {
-		return mybatis.selectOne("fr.mapper.recipe.selectRecipe", seq);
+		return mybatis.selectOne("fr.mapper.recipe.selectRecipeForIndex", seq);
 	}
 	
 	public List<ImageVO> recipeImageList(int seq){
 		return mybatis.selectList("fr.mapper.recipe.selectRecipeImage", seq);
+	}
+	
+	public List<RecipeVO> recipeSearch(String[] ingredList){
+		return mybatis.selectList("fr.mapper.recipe.selectRecipeforIngredients", ingredList);
 	}
 
 }

@@ -26,6 +26,11 @@ public class RecipeServiceImpl implements RecipeService {
 	public List<ImageVO> recipeImageList(int seq) {
 		return dao.recipeImageList(seq);
 	}
+
+	@Override
+	public List<RecipeVO> recipeSearch(String[] ingredList) {
+		return dao.recipeSearch(ingredList);
+	}
 	
 
 }

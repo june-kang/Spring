@@ -76,6 +76,7 @@
 		
 			if(size > 3){
 				down.on('click', function(){
+					if(size - current <= 3) return;
 					if(current < size / thumbListSize + 1) current++;
 					var tl = containMoveHeight * current * -1;
 					container.stop().animate({top:tl});

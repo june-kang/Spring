@@ -3,9 +3,9 @@
 
       <div class="main">
         <div class="search">
-          <form action="#" method="get">
-            <input type="text" name="searchtext" placeholder="What's in your fridge" />
-            <input type="button" name="searchbutton"  value="Go!" onclick="alert('hello')"></button>
+          <form action="${ctxPath }/search" method="get">
+            <input type="text" name="ingredients" placeholder="What's in your fridge" />
+            <input type="submit" name="searchbutton"  value="Go!" />
           </form>
         </div>
         <div class="weektop">
