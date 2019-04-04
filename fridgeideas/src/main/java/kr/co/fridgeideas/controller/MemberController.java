@@ -75,8 +75,18 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="/member/mypage")
-	public String mypage() {
-		return "/member/mypage";
+	public String mypage(HttpSession sess) {
+		
+		MemberVO memberVO = (MemberVO) sess.getAttribute("memberVO");
+		
+		if(memberVO == null) {
+			return "redirect:/index?loginStatus=no";	
+		} else {
+			return "/member/mypage";
+		}
+		
+		
+		
 	}
 	
 	

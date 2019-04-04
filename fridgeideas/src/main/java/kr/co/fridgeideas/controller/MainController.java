@@ -18,12 +18,13 @@ public class MainController {
 	private MainService service;
 	
 	@RequestMapping(value= {"/", "", "index"})
-	public String index(Model model, String result) throws Exception {
+	public String index(Model model, String result, String loginStatus) throws Exception {
 		
 		List<RecipeVO> list = service.mainRecipeList();
 		
 		model.addAttribute("list", list);
 		model.addAttribute("result", result);
+		model.addAttribute("loginStatus", loginStatus);
 		
 		return "/index";
 	}

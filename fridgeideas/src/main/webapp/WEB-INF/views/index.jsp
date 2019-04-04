@@ -1,5 +1,14 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="./_head.jsp" %>
+<script>
+	var loginStatus = "${loginStatus}";
+
+	$(function(){
+		if(loginStatus == 'no'){
+			alert('로그인이 필요합니다.');
+		}
+	});
+</script>
 
       <div class="main">
         <div class="search">

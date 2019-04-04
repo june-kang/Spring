@@ -23,7 +23,7 @@
         <div class="banner" id="recipe_banner"><span>Recipe</span></div>
         <div class="slider">
           <div><a href="${ctxPath }/recipe?cate=Beginner"><img src="${ctxPath }/img/beginner.png" alt="beginner" /><span>Beginner</span></a></div>
-          <div><a href="${ctxPath }/recipe?cate=Breakfast&Brunch"><img src="${ctxPath }/img/breakfast.png" alt="breakfast" /><span>Breakfast & Brunch</span></a></div>
+          <div><a href="${ctxPath }/recipe?cate=Breakfast"><img src="${ctxPath }/img/breakfast.png" alt="breakfast" /><span>Breakfast & Brunch</span></a></div>
           <div><a href="${ctxPath }/recipe?cate=Dinner"><img src="${ctxPath }/img/dinner.png" alt="dinner" /><span>Dinner</span></a></div>
           <div><a href="${ctxPath }/recipe?cate=Holiday"><img src="${ctxPath }/img/holiday.png" alt="holiday" /><span>Holiday</span></a></div>
           <div><a href="${ctxPath }/recipe?cate=Vegan"><img src="${ctxPath }/img/vegan.png" alt="vegan" /><span>Vegan</span></a></div>

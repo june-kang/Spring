@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import kr.co.fridgeideas.service.RecipeService;
 import kr.co.fridgeideas.vo.ImageVO;
+import kr.co.fridgeideas.vo.MemberVO;
 import kr.co.fridgeideas.vo.RecipeVO;
 
 @Controller
@@ -51,18 +53,31 @@ public class RecipeController {
 	}
 	
 	@RequestMapping(value="/recipe/recipe_view")
-	public String recipeView(Model model, int seq) {
+	public String recipeView(Model model, HttpSession sess, int seq) {
 		
-		RecipeVO recipeVO = service.view(seq);
-		List<ImageVO> imageList = service.recipeImageList(seq);
+		MemberVO memberVO = (MemberVO) sess.getAttribute("memberVO");
 		
-		String source = recipeVO.getIngredients();
-		String[] ingredList = source.split(",");
-				
-		model.addAttribute("recipeVO", recipeVO);
-		model.addAttribute("imageList", imageList);
-		model.addAttribute("ingredList", ingredList);
+		if(memberVO == null) {
+			return "redirect:/index?loginStatus=no";
+		} else {
+			String uid = memberVO.getUid();
+			
+			RecipeVO recipeVO = service.view(seq);
+			List<ImageVO> imageList = service.recipeImageList(seq);
+			
+			if(recipeVO.getUid() != uid) {
+				service.updateRecipeHit(seq);
+			}
+			
+			String source = recipeVO.getIngredients();
+			String[] ingredList = source.split(",");
+					
+			model.addAttribute("recipeVO", recipeVO);
+			model.addAttribute("imageList", imageList);
+			model.addAttribute("ingredList", ingredList);
+			
+			return "/recipe/recipe_view";
+		}
 		
-		return "/recipe/recipe_view";
 	}
 }

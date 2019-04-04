@@ -1,64 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../_head.jsp" %>
-<style>
-#gallery > #thumbnail {
-	height: 265px;
-    width: 117px;
-	position: relative;	
-	padding-top: 18px;
-}
-#gallery > #thumbnail > .img_list{
-	width: 115px;
-	height: 240px;
-	position: absolute;
-	overflow: hidden;
-}
-#gallery > #thumbnail >.img_list > ul  {
-	height: 240px;
-    width: 115px;
-    position: absolute;
-    
-}
-#gallery > #thumbnail > .up, .down {
-	display: inline-block;
-	width: 115px;
-	height: 18px;
-	background-color: #f0ae2c;
-	text-align: center;
-	font-size: 15px;
-	cursor: pointer;
-	position: absolute;
-}
-#gallery > #thumbnail > .up{top: 0;}
-#gallery > #thumbnail > .down{bottom: 0;}
 
-
-#gallery > #thumbnail >.img_list > ul > li{
-	height: 80px;
-	width: 100%;
-    text-align: center;
-    cursor: pointer;
-}
-
-#gallery > #image {
-    width: 480px;
-    height: 258px;
-    position: absolute;
-    top: 0;
-    right: 0;
-}
-#gallery > #image > p{
-	width: 100%;
-	height: 100%;
-	position: absolute;
-	top: 0;
-	right: 0;
-}
-#gallery > #image img{
-	width: 480px;
-	height: 258px;
-}
-</style>
 <script>
 	$(function(){
 		
@@ -98,14 +40,7 @@
 				var i = $(this).index();
 				image.eq(i).css('display', 'block');
 				
-			});
-			
-			
-		
-		
-	
-		
-		
+			});	
 	});
 </script>
 <section id="sub">

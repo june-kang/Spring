@@ -85,23 +85,31 @@ public class BoardController {
 	public String commuView(Model model, int seq, HttpSession sess) {
 		
 		MemberVO memberVO = (MemberVO) sess.getAttribute("memberVO");
-		String uid = memberVO.getUid();
 		
-		BoardVO boardVO = service.view(seq);
-		List<ImageVO> list = new ArrayList<>();
 		
-		if(!boardVO.getUid().equals(uid)) {
-			service.updateView(seq);
+		if(memberVO == null) {
+			return "redirect:/index?loginStatus=no";
+		
+		}else {
+			String uid = memberVO.getUid();
+			
+			BoardVO boardVO = service.view(seq);
+			List<ImageVO> list = new ArrayList<>();
+			
+			if(!boardVO.getUid().equals(uid)) {
+				service.updateView(seq);
+			}
+			
+			if(boardVO.getFile()==1) {
+				list = service.commuBoardImage(seq);
+			}
+			
+			model.addAttribute("boardVO", boardVO);
+			model.addAttribute("list", list);
+			
+			return "/community/commu_view";
 		}
 		
-		if(boardVO.getFile()==1) {
-			list = service.commuBoardImage(seq);
-		}
-		
-		model.addAttribute("boardVO", boardVO);
-		model.addAttribute("list", list);
-		
-		return "/community/commu_view";
 	}
 	
 	@ResponseBody
@@ -139,8 +147,15 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value="/member/myrecipe", method=RequestMethod.GET)
-	public String myrecipe() {
-		return "/member/myrecipe";
+	public String myrecipe(HttpSession sess) {
+		MemberVO memberVO = (MemberVO) sess.getAttribute("memberVO");
+		
+		if(memberVO == null) {
+			return "redirect:/index?loginStatus=no";
+		}else {
+			return "/member/myrecipe";
+		}
+		
 	}
 	
 	@RequestMapping(value="/member/myrecipe", method=RequestMethod.POST)

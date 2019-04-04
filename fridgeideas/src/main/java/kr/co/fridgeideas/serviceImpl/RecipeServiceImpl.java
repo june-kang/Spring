@@ -41,6 +41,11 @@ public class RecipeServiceImpl implements RecipeService {
 	public List<RecipeVO> cateBestRecipe(String cate) {
 		return dao.cateBestRecipe(cate);
 	}
+
+	@Override
+	public void updateRecipeHit(int seq) {
+		dao.updateRecipeHit(seq);		
+	}
 	
 
 }

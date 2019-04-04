@@ -44,10 +44,10 @@
 		]]>
 
 		<if test="_parameter.equals('Beginner') ">
-			AND cooking_level=#{cate}
+			AND r.cooking_level=#{cate}
 		</if>
 		<if test="_parameter!=('Beginner') ">
-			AND cate=#{cate}
+			AND r.cate LIKE CONCAT('%', #{cate}, '%')
 		</if>
 		GROUP BY r.seq;
 	</select>
@@ -63,6 +63,12 @@
 			LIMIT 12;
 		]]>
 	</select>
+	
+	<update id="updateRecipeHit">
+		<![CDATA[
+			UPDATE `FR_RECIPE` SET hit=hit+1 WHERE seq=#{seq};
+		]]>
+	</update>
 
 
 </mapper>
