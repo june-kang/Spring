@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="fr.mapper.recipe">
+	
+	<select id="selectmainList" resultType="kr.co.fridgeideas.vo.RecipeVO">
+		<![CDATA[
+			SELECT r.*, i.fileName FROM `FR_RECIPE` AS r, `FR_IMAGE` AS i
+			WHERE r.seq = i.recipe_id
+			GROUP BY r.seq
+			LIMIT 12;
+		]]>
+	</select>
+	
+	<select id="selectRecipeForIndex" resultType="kr.co.fridgeideas.vo.RecipeVO">
+		<![CDATA[
+			SELECT * FROM `FR_RECIPE` WHERE seq=#{seq};
+		]]>
+	</select>
+	
+	<select id="selectRecipeImage" resultType="kr.co.fridgeideas.vo.ImageVO">
+		<![CDATA[
+			SELECT * FROM `FR_IMAGE` WHERE recipe_id=#{seq}
+		]]>
+	</select>
+	
+	<select id="selectRecipeForIngredients" resultType="kr.co.fridgeideas.vo.RecipeVO">
+		<![CDATA[
+			SELECT r.*, i.fileName
+			FROM `FR_RECIPE` AS r INNER JOIN `FR_IMAGE` AS i
+			ON r.seq = i.recipe_id 			
+		]]>
+			<foreach item="item" collection="array" open="WHERE" separator="OR">
+				r.ingredients LIKE CONCAT('%', #{item},'%')
+			</foreach>
+			GROUP BY r.seq;
+			
+	</select>
+	
+	<select id="selectRecipeForCate" parameterType="String" resultType="kr.co.fridgeideas.vo.RecipeVO">
+		<![CDATA[
+			SELECT r.*, i.fileName
+			FROM `FR_RECIPE` AS r INNER JOIN `FR_IMAGE` AS i
+			ON r.seq = i.recipe_id
+		]]>
+
+		<if test="_parameter.equals('Beginner') ">
+			AND r.cooking_level=#{cate}
+		</if>
+		<if test="_parameter!=('Beginner') ">
+			AND r.cate LIKE CONCAT('%', #{cate}, '%')
+		</if>
+		GROUP BY r.seq;
+	</select>
+	
+	<select id="selectBestRecipe" resultType="kr.co.fridgeideas.vo.RecipeVO">
+		<![CDATA[
+			SELECT r.*, i.fileName
+			FROM `FR_RECIPE` AS r INNER JOIN `FR_IMAGE` AS i
+			ON r.seq = i.recipe_id
+			WHERE r.rdate > (NOW() - INTERVAL 1 MONTH)
+			GROUP BY r.seq
+			ORDER BY r.hit
+			LIMIT 12;
+		]]>
+	</select>
+	
+	<update id="updateRecipeHit">
+		<![CDATA[
+			UPDATE `FR_RECIPE` SET hit=hit+1 WHERE seq=#{seq};
+		]]>
+	</update>
+
+
+</mapper>

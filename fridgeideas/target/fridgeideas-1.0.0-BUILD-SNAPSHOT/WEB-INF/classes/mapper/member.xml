@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="fr.mapper.member">
+	<select id="selectTerms" resultType="kr.co.fridgeideas.vo.TermsVO">
+		<![CDATA[
+			SELECT * FROM `FR_TERMS`;
+		]]>
+	</select>
+	<insert id="insertMember">
+		<![CDATA[
+			INSERT INTO `FR_MEMBER` SET
+			uid=#{uid},
+			pass=PASSWORD(#{pass}),
+			name=#{name},
+			nick=#{nick},
+			email=#{email},
+			hp=#{hp},
+			grade=#{grade},
+			zip=#{zip},
+			addr1=#{addr1},
+			addr2=#{addr2},
+			regip=#{regip},
+			rdate=NOW();		
+		]]>
+	</insert>
+	
+	<select id="selectMember" resultType="kr.co.fridgeideas.vo.MemberVO">
+		<![CDATA[
+			SELECT * FROM `FR_MEMBER` WHERE uid=#{uid} AND pass=PASSWORD(#{pass});
+		]]>
+	</select>
+	
+	<select id="selectMemberCountUid" resultType="int">
+		<![CDATA[
+			SELECT COUNT(*) FROM `FR_MEMBER` WHERE uid=#{uid};
+		]]>
+	</select>
+	<select id="selectMemberCountNick" resultType="int">
+		<![CDATA[
+			SELECT COUNT(*) FROM `FR_MEMBER` WHERE nick=#{nick};
+		]]>
+	</select>
+	<select id="selectMemberCountHp" resultType="int">
+		<![CDATA[
+			SELECT COUNT(*) FROM `FR_MEMBER` WHERE hp=#{hp};
+		]]>
+	</select>
+	<select id="selectMemberCountEmail" resultType="int">
+		<![CDATA[
+			SELECT COUNT(*) FROM `FR_MEMBER` WHERE email=#{email};
+		]]>
+	</select>
+	
+	
+
+
+
+
+</mapper>

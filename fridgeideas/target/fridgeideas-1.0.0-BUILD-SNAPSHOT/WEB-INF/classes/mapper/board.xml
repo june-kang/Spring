@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="fr.mapper.board">
+	
+	
+	<insert id="insertCommuBoard" parameterType="kr.co.fridgeideas.vo.BoardVO" useGeneratedKeys="true" keyProperty="seq">
+		<![CDATA[
+			INSERT INTO `FR_BOARD` SET
+			title=#{title},
+			content=#{content},
+			file=#{file},
+			uid=#{uid},
+			regip=#{regip},
+			rdate=NOW();
+		]]>
+		
+	</insert>
+	
+	<insert id="insertImage" parameterType="kr.co.fridgeideas.vo.ImageVO">
+		<![CDATA[
+			INSERT INTO `FR_IMAGE` SET
+			fileName=#{fileName},
+			reg_id=#{reg_id},
+			fileType=#{fileType},
+		]]>	
+		<if test='fileType=="community"'>
+		<![CDATA[
+			commu_id=#{commu_id},
+		]]>
+		</if>
+		<if test='fileType=="recipe"'>
+		<![CDATA[
+			recipe_id=#{recipe_id},
+		]]>
+		</if>
+		<![CDATA[
+			credate=NOW();
+		]]>		
+	</insert>
+	
+	<select id="selectCommuList" resultType="kr.co.fridgeideas.vo.BoardVO">
+		<![CDATA[
+			SELECT b.*, m.nick FROM `FR_BOARD` AS b, `FR_MEMBER` AS m
+			WHERE b.uid = m.uid AND cate='community' AND parent=0
+			ORDER BY seq DESC;
+		]]>
+	</select>
+	
+	<select id="selectCommuBoard" resultType="kr.co.fridgeideas.vo.BoardVO">
+		<![CDATA[
+			SELECT b.*, m.nick FROM `FR_BOARD` AS b, `FR_MEMBER` AS m
+			WHERE b.uid = m.uid AND b.seq=#{seq};
+		]]>
+	</select>
+	
+	<update id="updateBoardView">
+		<![CDATA[
+			UPDATE `FR_BOARD` SET view=view+1 WHERE seq=#{seq};
+		]]>
+	</update>
+	
+	<select id="selectCommuImage" resultType="kr.co.fridgeideas.vo.ImageVO">
+		<![CDATA[
+			SELECT * FROM `FR_IMAGE` WHERE fileType='community' AND commu_id=#{seq};
+		]]>
+	</select>
+	
+	<insert id="insertComment" parameterType="kr.co.fridgeideas.vo.BoardVO" useGeneratedKeys="true" keyProperty="rdate">
+		<![CDATA[
+			INSERT INTO `FR_BOARD` SET
+			parent=#{parent},
+			cate='community',
+			content=#{content},
+			uid=#{uid},
+			regip=#{regip},
+			rdate=NOW();
+		]]>
+	</insert>
+	<update id="updateCommentCount">
+		<![CDATA[
+			UPDATE `FR_BOARD` SET comment=comment+1 WHERE seq=#{parent};
+		]]>
+	</update>
+	
+	<select id="selectCommentList" resultType="kr.co.fridgeideas.vo.BoardVO">
+	<![CDATA[
+		SELECT b.*, m.nick FROM `FR_BOARD` AS b, `FR_MEMBER` AS m 
+		WHERE b.uid = m.uid AND parent=#{parent} AND cate='community';
+	]]>
+	</select>
+	
+	<insert id="insertRecipe" parameterType="kr.co.fridgeideas.vo.RecipeVO" useGeneratedKeys="true" keyProperty="seq">
+		<![CDATA[
+			INSERT INTO `FR_RECIPE` SET
+			uid=#{uid},
+			nick=#{nick},
+			cate=#{cate},
+			author_write=#{author_write},
+			cooking_level=#{cooking_level},
+			recipe_name=#{recipe_name},
+			cooking_time_h=#{cooking_time_h},
+			cooking_time_m=#{cooking_time_m},
+			ingredients=#{ingredients},
+			serving=#{serving},
+			direction1=#{direction1},
+			direction2=#{direction2},
+			direction3=#{direction3},
+			direction4=#{direction4},
+			direction5=#{direction5},
+			direction6=#{direction6},
+			direction7=#{direction7},
+			direction8=#{direction8},
+			direction9=#{direction9},
+			regip=#{regip},
+			file=#{file},
+			rdate=NOW();
+		]]>
+	</insert>
+
+</mapper>
