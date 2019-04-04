@@ -11,4 +11,5 @@ public interface RecipeService {
 	public List<ImageVO> recipeImageList(int seq);
 	public List<RecipeVO> recipeSearch(String[] ingredList);
 	public List<RecipeVO> cateRecipeList(String cate);
+	public List<RecipeVO> cateBestRecipe(String cate);
 }

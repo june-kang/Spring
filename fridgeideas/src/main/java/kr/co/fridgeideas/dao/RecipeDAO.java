@@ -31,5 +31,8 @@ public class RecipeDAO {
 	public List<RecipeVO> cateRecipeList(String cate){
 		return mybatis.selectList("fr.mapper.recipe.selectRecipeForCate", cate);
 	}
-
+	
+	public List<RecipeVO> cateBestRecipe(String cate){
+		return mybatis.selectList("fr.mapper.recipe.selectBestRecipe", cate);
+	}
 }

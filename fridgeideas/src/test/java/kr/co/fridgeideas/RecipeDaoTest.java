@@ -31,7 +31,7 @@ public class RecipeDaoTest {
 	
 	@Test
 	public void CateTest() {
-		String cate = "Beginner";
+		String cate = "Breakfast";
 		
 		List<RecipeVO> recipeList = dao.cateRecipeList(cate);
 		for(RecipeVO vo : recipeList) {

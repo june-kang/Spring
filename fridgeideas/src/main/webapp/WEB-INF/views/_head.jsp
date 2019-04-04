@@ -27,7 +27,7 @@
         <a href="${ctxPath }/"><img src="${ctxPath }/img/logo.png" alt="로고"></a>
         <ul class="gnb">
           <li><a href="${ctxPath }/search">Search</a></li>
-          <li><a href="${ctxPath }/recipe?cate=beginner">Recipe</a></li>
+          <li><a href="${ctxPath }/recipe?cate=Beginner">Recipe</a></li>
           <li><a href="${ctxPath }/tips/usingtools">Tips</a></li>
           <li><a href="${ctxPath }/community/commu_list">Community</a></li>
           <li><a href="${ctxPath }/notice/notice">Notice</a></li>

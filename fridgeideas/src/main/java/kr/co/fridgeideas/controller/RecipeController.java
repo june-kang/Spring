@@ -1,5 +1,6 @@
 package kr.co.fridgeideas.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -34,10 +35,19 @@ public class RecipeController {
 	}
 	
 	@RequestMapping(value="/recipe")
-	public String recipeList(String cate) {
+	public String recipeList(Model model, String cate) {
 		
-		List<RecipeVO> list = service.cateRecipeList(cate);
-		return "/recipe/beginner";
+		List<RecipeVO> list = new ArrayList<RecipeVO>();
+		
+		if(cate.equals("Recipe of the Month")) {
+			list = service.cateBestRecipe(cate);
+		} else {
+			list = service.cateRecipeList(cate);
+		}
+
+		model.addAttribute("list", list);
+		model.addAttribute("cate", cate);
+		return "/recipe/recipe_list";
 	}
 	
 	@RequestMapping(value="/recipe/recipe_view")
