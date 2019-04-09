@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import kr.co.fridgeideas.vo.ReviewVO;
 import kr.co.fridgeideas.vo.ImageVO;
 import kr.co.fridgeideas.vo.RecipeVO;
 
@@ -38,5 +39,14 @@ public class RecipeDAO {
 	
 	public void updateRecipeHit(int seq) {
 		mybatis.update("fr.mapper.recipe.updateRecipeHit", seq);
+	}
+	
+	public int reviewWrite(ReviewVO rvo) {
+		mybatis.insert("fr.mapper.recipe.insertRecipeReview", rvo);
+		return rvo.getRecipe_id();
+	}
+	
+	public void updateRatingReviewCount(RecipeVO recipeVO) {
+		mybatis.update("fr.mapper.recipe.updateRatingReviewCount", recipeVO);
 	}
 }

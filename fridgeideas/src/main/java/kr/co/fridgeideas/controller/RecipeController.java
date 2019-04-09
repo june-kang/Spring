@@ -4,14 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.fridgeideas.service.RecipeService;
+import kr.co.fridgeideas.vo.ReviewVO;
 import kr.co.fridgeideas.vo.ImageVO;
 import kr.co.fridgeideas.vo.MemberVO;
 import kr.co.fridgeideas.vo.RecipeVO;
@@ -83,5 +86,22 @@ public class RecipeController {
 			return "/recipe/recipe_view";
 		}
 		
+	}
+	
+	@RequestMapping(value="/recipe/reviewWrite")
+	public String reviewWrite(HttpSession sess, HttpServletRequest req, ReviewVO rvo) {
+		MemberVO memberVO = (MemberVO) sess.getAttribute("memberVO");
+		
+		rvo.setUid(memberVO.getUid());
+		rvo.setNick(memberVO.getNick());
+		rvo.setRegip(req.getRemoteAddr());
+		
+		int seq = service.reviewWrite(rvo);
+		
+		RecipeVO recipeVO = new RecipeVO();
+		recipeVO.setSeq(seq);
+		recipeVO.setRating(rvo.getRating());
+		service.updateRatingReviewCount(recipeVO); // 별점 수정
+		return "redirect:/recipe/recipe_view?seq="+seq;
 	}
 }

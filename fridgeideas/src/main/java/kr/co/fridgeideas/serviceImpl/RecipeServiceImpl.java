@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import kr.co.fridgeideas.dao.RecipeDAO;
 import kr.co.fridgeideas.service.RecipeService;
+import kr.co.fridgeideas.vo.ReviewVO;
 import kr.co.fridgeideas.vo.ImageVO;
 import kr.co.fridgeideas.vo.RecipeVO;
 
@@ -45,6 +46,17 @@ public class RecipeServiceImpl implements RecipeService {
 	@Override
 	public void updateRecipeHit(int seq) {
 		dao.updateRecipeHit(seq);		
+	}
+
+	@Override
+	public int reviewWrite(ReviewVO rvo) {
+		return dao.reviewWrite(rvo);
+	}
+
+
+	@Override
+	public void updateRatingReviewCount(RecipeVO recipeVO) {
+		dao.updateRatingReviewCount(recipeVO);
 	}
 	
 

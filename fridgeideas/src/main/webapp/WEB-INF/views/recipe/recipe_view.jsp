@@ -204,7 +204,8 @@
   </div>
   <div class="review_write">
     <h3>Leave your review</h3>
-    <form action="#" method="post">
+    <form action="${ctxPath }/recipe/reviewWrite" method="post">
+    <input type="hidden" name="recipe_id" value="${recipeVO.seq }" />
 		<textarea name="comment" rows="5"></textarea>
       <select class="rating" name="rating">
         <option value="5">★★★★★</option>

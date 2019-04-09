@@ -91,6 +91,29 @@
 			UPDATE `FR_RECIPE` SET hit=hit+1 WHERE seq=#{seq};
 		]]>
 	</update>
+	
+	<insert id="insertRecipeReview" parameterType="kr.co.fridgeideas.vo.ReviewVO" useGeneratedKeys="true" keyProperty="recipe_id">
+		<![CDATA[
+			INSERT INTO `FR_RECIPE_REVIEW` SET
+			uid=#{uid},
+			nick=#{nick},
+			recipe_id=#{recipe_id},
+			rating=#{rating},
+			comment=#{comment},
+			credate=NOW(),
+			regip=#{regip};
+		]]>
+	</insert>
+
+	
+	<update id="updateRatingReviewCount">
+		<![CDATA[
+			UPDATE `FR_RECIPE` SET
+			review=review+1
+			rating=(rating+#{rating}/review+1)
+			WHERE seq=#{seq};
+		]]>
+	</update>
 
 
 </mapper>
