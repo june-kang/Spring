@@ -23,11 +23,15 @@ public class RecipeController {
 	private RecipeService service;
 	
 	@RequestMapping(value="/search")
-	public String search(Model model, String ingredients) {
+	public String search(Model model, RecipeVO recipeVO) {
+		String ingredients = recipeVO.getIngredients();
 		
 		if(ingredients!=null) {
-			String[] ingredList = ingredients.split("\\s+"); // 한칸 이상의 공백 자르기
-			List<RecipeVO> list = service.recipeSearch(ingredList);
+			recipeVO.setIngredList(ingredients.split("\\s+")); // 한칸 이상의 공백 잘라서 배열로 저장
+			List<RecipeVO> list = service.recipeSearch(recipeVO);
+			for(RecipeVO vo : list) {
+				System.out.println(vo.getRecipe_name());
+			}
 			model.addAttribute("list", list);
 			return "/search/search";
 		} else {

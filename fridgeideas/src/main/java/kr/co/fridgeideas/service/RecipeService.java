@@ -9,7 +9,7 @@ public interface RecipeService {
 
 	public RecipeVO view(int seq);
 	public List<ImageVO> recipeImageList(int seq);
-	public List<RecipeVO> recipeSearch(String[] ingredList);
+	public List<RecipeVO> recipeSearch(RecipeVO recipeVO);
 	public List<RecipeVO> cateRecipeList(String cate);
 	public List<RecipeVO> cateBestRecipe(String cate);
 	public void updateRecipeHit(int seq);

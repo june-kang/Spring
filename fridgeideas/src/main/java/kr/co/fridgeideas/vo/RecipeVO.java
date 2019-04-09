@@ -11,6 +11,7 @@ public class RecipeVO {
 	private String author_write;
 	private String cooking_level;
 	private String recipe_name;
+	private String cooking_time;
 	private int cooking_time_h;
 	private int cooking_time_m;
 	private String ingredients;
@@ -34,7 +35,7 @@ public class RecipeVO {
 	private int file;
 	private MultipartFile fname;
 	
-	
+	private String[] ingredList;
 	
 	private String fileName;
 	
@@ -80,6 +81,14 @@ public class RecipeVO {
 	}
 	public void setRecipe_name(String recipe_name) {
 		this.recipe_name = recipe_name;
+	}
+	
+	
+	public String getCooking_time() {
+		return cooking_time;
+	}
+	public void setCooking_time(String cooking_time) {
+		this.cooking_time = cooking_time;
 	}
 	public int getCooking_time_h() {
 		return cooking_time_h;
@@ -226,6 +235,15 @@ public class RecipeVO {
 	}
 	public void setFileName(String fileName) {
 		this.fileName = fileName;
+	}
+	
+	
+	
+	public String[] getIngredList() {
+		return ingredList;
+	}
+	public void setIngredList(String[] ingredList) {
+		this.ingredList = ingredList;
 	}
 
 }

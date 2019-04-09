@@ -30,7 +30,7 @@
 	<!-- dataSource 설정(DB설정) -->
 	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<property name="url" value="jdbc:mysql://localhost:3306/june" />
+		<property name="url" value="jdbc:mysql://localhost:3306/june?allowMultiQueries=true" />
 		<property name="username" value="root" />
 		<property name="password" value="1234" />
 	</bean>

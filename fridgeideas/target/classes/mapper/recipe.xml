@@ -27,9 +27,31 @@
 		<![CDATA[
 			SELECT r.*, i.fileName
 			FROM `FR_RECIPE` AS r INNER JOIN `FR_IMAGE` AS i
-			ON r.seq = i.recipe_id 			
+			ON r.seq = i.recipe_id
+			WHERE (cate=#{cate} or #{cate}='') 			
+			AND (cooking_level=#{cooking_level} or #{cooking_level}='') 			
 		]]>
-			<foreach item="item" collection="array" open="WHERE" separator="OR">
+			<if test="cooking_time!=null" >
+				<choose>
+					<when test="cooking_time.equals('under 30m') ">
+						<![CDATA[
+							AND (cooking_time_h = 0	and cooking_time_m <= 30)
+						]]>
+					</when>
+					<when test="cooking_time.equals('30m-1h') ">
+						<![CDATA[
+							AND cooking_time_h=1
+							OR (cooking_time_h=0 and cooking_time_m>=30)
+						]]>
+					</when>
+					<otherwise>
+						<![CDATA[
+							AND cooking_time_h >=1
+						]]> 
+					</otherwise> 			
+				</choose>
+			</if>
+			<foreach item="item" collection="ingredList" open="AND" separator="OR">
 				r.ingredients LIKE CONCAT('%', #{item},'%')
 			</foreach>
 			GROUP BY r.seq;

@@ -8,26 +8,27 @@
   </nav>
   <div class="recipe_search">
   <div class="search">
-    <form action="#" method="get">
-      <input type="text" name="searchtext" placeholder="What's in your fridge" />
-      <input type="button" name="searchbutton"  value="Go!" onclick="alert('hello')"></button>
+    <form action="${ctxPath }/search" method="get">
+      <input type="text" name="ingredients" placeholder="What's in your fridge" />
+      
       <select name="category">
-        <option value="breakfast">breakfast</option>
-        <option value="dessert">dessert</option>
-        <option value="dinner">dinner</option>
-        <option value="holiday">holiday</option>
-        <option value="vegan">vegan</option>
+        <option value="Breakfast">Breakfast</option>
+        <option value="Dessert">Dessert</option>
+        <option value="Dinner">Dinner</option>
+        <option value="Holiday">Holiday</option>
+        <option value="Vegan">Vegan</option>
       </select>
       <select name="cooking_level">
-        <option value="beginning">beginning</option>
-        <option value="intermediate">intermediate</option>
-        <option value="advanced">advanced</option>
+        <option value="Beginner">Beginner</option>
+        <option value="Intermediate">Intermediate</option>
+        <option value="Advanced">Advanced</option>
       </select>
       <select name="cooking_time">
-        <option value="under 30">under 30m</option>
-        <option value="30-1h">30m-1h</option>
+        <option value="under 30m">under 30m</option>
+        <option value="30m-1h">30m-1h</option>
         <option value="over 1h">over 1h</option>
       </select>
+      <input type="submit" name="searchbutton" value="Go!" />
     </form>
   </div>
   <div class="search_result">

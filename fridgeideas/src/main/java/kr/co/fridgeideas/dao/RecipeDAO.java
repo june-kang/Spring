@@ -24,8 +24,8 @@ public class RecipeDAO {
 		return mybatis.selectList("fr.mapper.recipe.selectRecipeImage", seq);
 	}
 	
-	public List<RecipeVO> recipeSearch(String[] ingredList){
-		return mybatis.selectList("fr.mapper.recipe.selectRecipeForIngredients", ingredList);
+	public List<RecipeVO> recipeSearch(RecipeVO recipeVO){
+		return mybatis.selectList("fr.mapper.recipe.selectRecipeForIngredients", recipeVO);
 	}
 	
 	public List<RecipeVO> cateRecipeList(String cate){

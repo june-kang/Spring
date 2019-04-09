@@ -19,17 +19,24 @@ public class RecipeDaoTest {
 	@Inject
 	private RecipeDAO dao;
 	
-	
-	public void RecipeSearchTest() {
+	@Test
+	public void searchTest() {
 		String[] ingredList = {"water", "oil"};
+		RecipeVO recipeVO = new RecipeVO();
+		recipeVO.setIngredList(ingredList);
+		recipeVO.setCooking_time("under 30m");
+		recipeVO.setCooking_level("Beginner");
+		recipeVO.setCate("Dinner");
 		
-		List<RecipeVO> recipeList = dao.recipeSearch(ingredList);
-		for(RecipeVO a : recipeList) {
-			System.out.println(a.getIngredients());
+		List<RecipeVO> list = dao.recipeSearch(recipeVO);
+		
+		System.out.println("검색성공!");
+		for(RecipeVO vo : list) {
+			System.out.println(vo.getRecipe_name());
 		}
 	}
 	
-	@Test
+	
 	public void CateTest() {
 		String cate = "Breakfast";
 		
